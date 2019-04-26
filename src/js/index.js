@@ -6,7 +6,7 @@ import Data from "data/download.json";
 
 const spyneApp = new SpyneApp();
 
-const imgUrl = "//spynejs.org.s3.amazonaws.com/test2/animals_0009.jpg";
+const imgUrl = "//spynejs.org.s3.amazonaws.com/test2/animals_0002.jpg";
 
 const app = new ViewStream({
   tagName: 'main',
