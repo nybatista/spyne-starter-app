@@ -6,7 +6,7 @@ import Data from "data/download.json";
 
 const spyneApp = new SpyneApp();
 
-const imgUrl = "//spynejs.org.s3.amazonaws.com/test2/animals_0002.jpg";
+const imgUrl = "//spynejs.org.s3.amazonaws.com/test2/animals_0004.jpg";
 
 const app = new ViewStream({
   tagName: 'main',
@@ -16,7 +16,7 @@ const app = new ViewStream({
 
 app.appendToDom(document.body);
 
-var n = Data.results[0],name;
+var n = Data.results[2],name;
 console.log('data is ',n.name.first);
 
 

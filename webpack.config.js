@@ -8,7 +8,11 @@ module.exports = (env)=>{
     filename: 'css/main.css'
   });
 
-  const cleanPlugin = new CleanWebpackPlugin();
+  const cleanPlugin = new CleanWebpackPlugin({
+    cleanOnceBeforeBuildPatterns: ['**/*','!.gitkeep'],
+    cleanAfterEveryBuildPatterns: ['!.gitkeep']
+
+  });
   const htmlPlugin = new HtmlWebpackPlugin({
     title: 'spyne-starter'
   });
@@ -58,7 +62,11 @@ module.exports = (env)=>{
             {
               loader : 'file-loader',
               options: {
-                name: '[path][name].[ext]'
+                name(file) {
+                  console.log("FILE IS ",file);
+                  let dir = String(file).includes('/imgs/') === true ? '/static/imgs/' : '/static/data/';
+                  return dir+'[name].[ext]';
+                }
 
               }
             } ]
