@@ -1,11 +1,27 @@
 module.exports = (env)=>{
   const path = require('path');
   const webpack = require('webpack');
+
+
+
+  const getEnvVals = (e)=>{
+    const isProd = e === 'build';
+    const mode = isProd ? 'production' : 'development';
+    const map =  isProd ? 'none' : 'inline-source-map';
+    const publicPath = isProd ? '' : '/';
+      return {mode,map,publicPath};
+
+  };
+
+  const envVals = getEnvVals(env);
+
+  console.log("ENV IS ",env,envVals);
+
   const MiniCssExtractPlugin = require('mini-css-extract-plugin');
   const HtmlWebpackPlugin = require('html-webpack-plugin');
   const CleanWebpackPlugin = require('clean-webpack-plugin');
   const miniCssPlugin = new MiniCssExtractPlugin({
-    filename: 'css/main.css'
+    filename: './css/main.css'
   });
 
   const cleanPlugin = new CleanWebpackPlugin({
@@ -19,25 +35,27 @@ module.exports = (env)=>{
 
 
   return {
-    mode: 'development',
+    mode: envVals.mode,
 
     entry: {
 
         index: "./src/js/index.js"
     },
 
-    devtool: 'inline-source-map',
+    devtool: envVals.map,
 
     devServer: {
-      contentBase: './dist',
-      publicPath: '/'
+      contentBase: path.join(__dirname, 'src'),
+      historyApiFallback: true
     },
 
     plugins: [miniCssPlugin, cleanPlugin, htmlPlugin],
 
     output: {
         filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist')
+      path: path.resolve(__dirname, 'dist'),
+      publicPath: envVals.publicPath,
+
     },
 
     module: {
@@ -103,9 +121,11 @@ module.exports = (env)=>{
     resolve: {
       alias: {
         imgs: path.resolve(__dirname, 'src/static/imgs/'),
-        data: path.resolve(__dirname, 'src/static/data/')
+        data: path.resolve(__dirname, 'src/static/data/'),
+        css: path.resolve(__dirname, 'src/css/')
 
       },
+      extensions: ['.js', '.css'],
     }
 
   }

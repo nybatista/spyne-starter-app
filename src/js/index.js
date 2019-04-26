@@ -1,39 +1,57 @@
-import "../css/main.css";
-import {SpyneApp, ViewStream} from 'spyne';
-import goat from "imgs/goat.jpg";
-import Data from "data/download.json";
+import  { CSS } from "css/main.css";
+import {SpyneApp, ViewStream, ChannelFetch} from 'spyne';
+import {MainView} from './components/main/main-view';
+import {ChannelStarterRoute} from './channels/channel-starter-route';
 
 
-const spyneApp = new SpyneApp();
+const spyneApp = new SpyneApp({
 
-const imgUrl = "//spynejs.org.s3.amazonaws.com/test2/animals_0004.jpg";
+  devMode:true,
 
-const app = new ViewStream({
-  tagName: 'main',
-  id: 'app'
+  channels: {
+
+
+    ROUTE: {
+
+      routes: {
+
+        routeLevel: {
+          routeName: 'pageId',
+          home: '^$|index.html',
+          profiles: {
+            routeLevel: {
+              routeName: 'profileId'
+            }
+          }
+
+
+        }
+
+
+
+      }
+
+
+
+    }
+
+
+  }
+
+
+
 
 });
+const app = new MainView();
 
 app.appendToDom(document.body);
 
-var n = Data.results[2],name;
-console.log('data is ',n.name.first);
 
 
+let randUserData = {
+  url: "//assetscontainer.com/starter-app/random-users.json",
+  mapFn: (p)=>p.users
+};
 
-app.appendView(new ViewStream({
-  tagName: 'h3',
-  data: 'HOLA PLANETA! '+n.name.first
-
-}));
-
-
-let img = new ViewStream({
-  tagName: 'img',
-  src: imgUrl,
-  width: 300
-
-});
-
-
-app.appendView(img);
+spyneApp.registerChannel(new ChannelStarterRoute());
+spyneApp.registerChannel(new ChannelFetch("CHANNEL_RANDOM_USERS", randUserData));
