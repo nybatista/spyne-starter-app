@@ -1,6 +1,8 @@
 module.exports = (env) => {
   const path = require('path');
   const webpack = require('webpack');
+  const ExtractTextPlugin = require('extract-text-webpack-plugin');
+  const devMode =  env !== 'build';
 
   const getEnvVals = (e) => {
     const isProd = e === 'build';
@@ -13,12 +15,27 @@ module.exports = (env) => {
 
   const envVals = getEnvVals(env);
 
+  const PATHS = {
+    dist: path.resolve(__dirname, 'dist'),
+    src: path.resolve(__dirname, 'src'),
+    js: 'dist/assets/js',
+
+
+  };
+
+
   const MiniCssExtractPlugin = require('mini-css-extract-plugin');
   const HtmlWebpackPlugin = require('html-webpack-plugin');
   const CleanWebpackPlugin = require('clean-webpack-plugin');
   const miniCssPlugin = new MiniCssExtractPlugin({
     filename: './css/main.css',
   });
+
+  const extractSass = new ExtractTextPlugin({
+    filename: 'assets/css/main.css',
+    disable: process.env.NODE_ENV === "development"
+  });
+
 
   const cleanPlugin = new CleanWebpackPlugin({
     cleanOnceBeforeBuildPatterns: ['**/*', '!.gitkeep'],
@@ -33,7 +50,7 @@ module.exports = (env) => {
     mode: envVals.mode,
 
     entry: {
-      index: './src/js/index.js',
+      index: './src/index.js',
     },
 
     devtool: envVals.map,
@@ -45,16 +62,38 @@ module.exports = (env) => {
 
     plugins: [miniCssPlugin, cleanPlugin, htmlPlugin],
 
-    output: {
+/*    output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
       publicPath: envVals.publicPath,
 
+    },*/
+
+    output: {
+      path: PATHS.dist,
+      publicPath: '/',
+
+      filename: 'assets/js/[name].js'
+
     },
+
+    optimization: {
+      splitChunks:{
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendor",
+            chunks: 'all',
+
+          }
+        }
+      }
+    },
+
 
     module: {
       rules: [
-        {
+/*        {
           test: /\.css$/,
           use: [
             {
@@ -67,7 +106,34 @@ module.exports = (env) => {
             },
             'css-loader',
           ],
+        },*/
+
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                // you can specify a publicPath here
+                // by default it use publicPath in webpackOptions.output
+                publicPath: '../'
+              }
+            },
+            "css-loader"
+          ]
         },
+
+
+        {
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+            'css-loader',
+            'sass-loader',
+          ],
+        },
+
+
         {
           test: /\.(png|svg|jpg|gif)$/,
           use: [

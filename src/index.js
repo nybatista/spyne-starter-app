@@ -1,7 +1,7 @@
-import  { CSS } from "css/main.css";
+import {css} from "./scss/main.scss";
 import {SpyneApp, ViewStream, ChannelFetch} from 'spyne';
-import {MainView} from './components/main/main-view';
-import {ChannelStarterRoute} from './channels/channel-starter-route';
+import {MainView} from './app/components/main-view';
+import {ChannelStarterRoute} from './app/channels/channel-starter-route';
 
 
 const spyneApp = new SpyneApp({

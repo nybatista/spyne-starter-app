@@ -1,5 +1,5 @@
-import {Subject} from 'rxjs';
-import {filter} from 'rxjs/operators';
+import {Subject} from 'rxjs/index';
+import {filter} from 'rxjs/operators/index';
 import {Channel, ChannelPayload} from 'spyne';
 
 export class ChannelStarterRoute extends Channel {
