@@ -28,7 +28,7 @@ module.exports = (env) => {
   const HtmlWebpackPlugin = require('html-webpack-plugin');
   const CleanWebpackPlugin = require('clean-webpack-plugin');
   const miniCssPlugin = new MiniCssExtractPlugin({
-    filename: './css/main.css',
+    filename: 'assets/css/main.css',
   });
 
   const extractSass = new ExtractTextPlugin({
@@ -62,20 +62,20 @@ module.exports = (env) => {
 
     plugins: [miniCssPlugin, cleanPlugin, htmlPlugin],
 
-/*    output: {
-      filename: '[name].bundle.js',
+   output: {
+     filename: 'assets/js/[name].js',
       path: path.resolve(__dirname, 'dist'),
       publicPath: envVals.publicPath,
 
-    },*/
+    },
 
-    output: {
+/*    output: {
       path: PATHS.dist,
       publicPath: '/',
 
       filename: 'assets/js/[name].js'
 
-    },
+    },*/
 
     optimization: {
       splitChunks:{
