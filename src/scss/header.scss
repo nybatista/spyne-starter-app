@@ -1,0 +1,27 @@
+#header-view{
+  position:relative;
+  height:50px;
+  background: darkblue;
+  width:100%;
+  color:#fff;
+
+  .header-content {
+    position:relative;
+    display:flex;
+    background: darkblue;
+    justify-content: space-between;
+    margin: 0 20px;
+    height: 100%;
+    align-items: center;;
+    color:#fff;
+
+    a {
+      color: #fff;
+      font-size:.9rem;
+      text-decoration: none;
+    }
+
+
+  }
+
+}

@@ -13,7 +13,7 @@
   "dependencies": {
     "ramda": "^0.26.1",
     "rxjs": "^6.5.1",
-    "spyne": "^0.10.3"
+    "spyne": "^0.10.5"
   },
   "devDependencies": {
     "chai": "^4.2.0",

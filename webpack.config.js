@@ -102,6 +102,11 @@ module.exports = (env) => {
           ]
         },
 
+        {
+          test: /\html$/,
+          loader: 'html-loader'
+        },
+
 
         {
           test: /\.(sa|sc|c)ss$/,

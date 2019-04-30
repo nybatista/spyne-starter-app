@@ -1,6 +1,6 @@
 import {css} from "./scss/main.scss";
 import {SpyneApp, ViewStream, ChannelFetch} from 'spyne';
-import {MainView} from './app/components/main-view';
+import {MainView} from './app/components/main/main-view';
 import {ChannelStarterRoute} from './app/channels/channel-starter-route';
 
 
@@ -15,11 +15,12 @@ const spyneApp = new SpyneApp({
 
       routes: {
 
-        routeLevel: {
+        routePath: {
           routeName: 'pageId',
           home: '^$|index.html',
+          about: 'about',
           profiles: {
-            routeLevel: {
+            routePath: {
               routeName: 'profileId'
             }
           }
