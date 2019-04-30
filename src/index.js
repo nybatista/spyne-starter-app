@@ -6,7 +6,7 @@ import {ChannelStarterRoute} from './app/channels/channel-starter-route';
 
 const spyneApp = new SpyneApp({
 
-  devMode:true,
+  debug:true,
 
   channels: {
 

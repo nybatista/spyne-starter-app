@@ -14,21 +14,20 @@ export class ChannelStarterRoute extends Channel {
   }
 
   onRouteChange(e){
-
-    console.log('on route change ',e);
+    let {pathsChanged, routeData} = e.props();
+    let {action, payload} = this.routeTrait$ParseRouteData(pathsChanged, routeData);
+    this.sendChannelPayload(action,payload);
   }
 
   onChannelInitialized() {
-    this.routeTestMethod();
-
     this.getChannel('CHANNEL_ROUTE')
         .subscribe(this.onRouteChange.bind(this));
   }
 
   addRegisteredActions() {
     return [
-      "CHANNEL_STARTER_PAGE_ROUTE_EVENT",
-      "CHANNEL_STARTER_PROFILE_ROUTE_EVENT"
+      "CHANNEL_STARTER_ROUTE_PAGE_EVENT",
+      "CHANNEL_STARTER_ROUTE_PROFILE_EVENT"
     ];
   }
 

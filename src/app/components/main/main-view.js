@@ -1,6 +1,7 @@
 import {ViewStream} from 'spyne';
 import {HeaderView} from './header-view';
 import {HomePageView} from '../page-home/home-page-view';
+import {PageHolderView} from './page-holder';
 
 export class MainView extends ViewStream {
 
@@ -57,8 +58,10 @@ export class MainView extends ViewStream {
     this.loadContent();
     this.addChannel("CHANNEL_RANDOM_USERS");
 
+    this.appendView(new PageHolderView());
+
     this.prependView(new HeaderView());
-    this.appendView(new HomePageView());
+
 
   }
 

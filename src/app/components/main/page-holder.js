@@ -2,6 +2,7 @@
 // import * as R from "ramda";
 import {ViewStream} from 'spyne';
 import {PageTraits} from '../../traits/page-traits';
+import {HomePageView} from '../page-home/home-page-view';
 
 export class PageHolderView extends ViewStream {
 
@@ -14,7 +15,17 @@ export class PageHolderView extends ViewStream {
 
   addActionListeners() {
     // return nexted array(s)
-    return [];
+    return [
+        ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'onPageEvent']
+    ];
+  }
+
+  onPageEvent(e){
+    let {pageId} = e.props();
+    const PageClass = this.pageTrait$GetPageClass(pageId);
+    this.appendView(new PageClass());
+    console.log('page event is ',pageId,e,PageClass);
+
   }
 
   broadcastEvents() {
@@ -24,6 +35,7 @@ export class PageHolderView extends ViewStream {
 
   afterRender() {
 
+   this.addChannel("CHANNEL_STARTER_ROUTE");
   }
 
 }

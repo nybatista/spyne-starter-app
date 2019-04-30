@@ -14,7 +14,9 @@ export class HomePageView extends ViewStream {
 
   addActionListeners() {
     // return nexted array(s)
-    return [];
+    return [
+        ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'disposeViewStream']
+    ];
   }
 
   broadcastEvents() {
@@ -23,7 +25,7 @@ export class HomePageView extends ViewStream {
   }
 
   afterRender() {
-    this.pageTestMethod();
+    this.pageTrait$InitPage();
 
   }
 
