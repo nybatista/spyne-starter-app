@@ -6,10 +6,11 @@ module.exports = (env) => {
 
   const getEnvVals = (e) => {
     const isProd = e === 'build';
+    const devMode =  env !== 'build';
     const mode = isProd ? 'production' : 'development';
     const map = isProd ? 'none' : 'inline-source-map';
     const publicPath = isProd ? '' : '/';
-    return {mode, map, publicPath};
+    return {devMode, mode, map, publicPath};
 
   };
 
@@ -33,7 +34,7 @@ module.exports = (env) => {
 
   const extractSass = new ExtractTextPlugin({
     filename: 'assets/css/main.css',
-    disable: process.env.NODE_ENV === "development"
+    disable: envVals.devMode
   });
 
 
@@ -43,7 +44,7 @@ module.exports = (env) => {
 
   });
   const htmlPlugin = new HtmlWebpackPlugin({
-    title: 'spyne-starter',
+    title: 'spyne-starter-app',
   });
 
   return {
@@ -56,7 +57,7 @@ module.exports = (env) => {
     devtool: envVals.map,
 
     devServer: {
-      contentBase: path.join(__dirname, 'src'),
+      contentBase: PATHS.src,
       historyApiFallback: true,
     },
 
@@ -64,18 +65,11 @@ module.exports = (env) => {
 
    output: {
      filename: 'assets/js/[name].js',
-      path: path.resolve(__dirname, 'dist'),
+      path: PATHS.dist,
       publicPath: envVals.publicPath,
 
     },
 
-/*    output: {
-      path: PATHS.dist,
-      publicPath: '/',
-
-      filename: 'assets/js/[name].js'
-
-    },*/
 
     optimization: {
       splitChunks:{
@@ -93,21 +87,6 @@ module.exports = (env) => {
 
     module: {
       rules: [
-/*        {
-          test: /\.css$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                // you can specify a publicPath here
-                // by default it use publicPath in webpackOptions.output
-                publicPath: '../',
-              },
-            },
-            'css-loader',
-          ],
-        },*/
-
         {
           test: /\.css$/,
           use: [
@@ -127,7 +106,7 @@ module.exports = (env) => {
         {
           test: /\.(sa|sc|c)ss$/,
           use: [
-            devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+            envVals.devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
             'css-loader',
             'sass-loader',
           ],
