@@ -49,10 +49,11 @@ app.appendToDom(document.body);
 
 
 
+
 let randUserData = {
   url: "//assetscontainer.com/starter-app/random-users.json",
   mapFn: (p)=>p.users
 };
 
 spyneApp.registerChannel(new ChannelStarterRoute());
-spyneApp.registerChannel(new ChannelFetch("CHANNEL_RANDOM_USERS", randUserData));
+spyneApp.registerChannel(new ChannelFetch("CHANNEL_PROFILES", randUserData))

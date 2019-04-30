@@ -1,5 +1,6 @@
 import {ViewStream} from 'spyne';
 import {PageTraits} from '../../traits/page-traits';
+import {ProfilesContentView} from './profiles-content-view';
 
 export class ProfilesPageView extends ViewStream {
 
@@ -15,8 +16,14 @@ export class ProfilesPageView extends ViewStream {
   addActionListeners() {
     // return nexted array(s)
     return [
-      ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'disposeViewStream']
+      ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'disposeViewStream'],
+      ['CHANNEL_PROFILES_DATA_EVENT', 'onProfilesData']
     ];
+  }
+
+  onProfilesData(e){
+    console.log('profiles returned ',e);
+    this.appendView(new ProfilesContentView({data:e.payload}))
   }
 
   broadcastEvents() {
@@ -26,6 +33,9 @@ export class ProfilesPageView extends ViewStream {
 
   afterRender() {
     this.pageTrait$InitPage();
+
+    this.addChannel("CHANNEL_PROFILES")
+
 
   }
 

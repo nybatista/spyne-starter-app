@@ -15,7 +15,6 @@ export class MainView extends ViewStream {
   addActionListeners() {
     // return nexted array(s)
     return [
-        ['CHANNEL_RANDOM_USERS_DATA_EVENT', 'onDataEvent']
     ];
   }
 
@@ -55,12 +54,10 @@ export class MainView extends ViewStream {
 
 
   afterRender() {
-    this.loadContent();
-    this.addChannel("CHANNEL_RANDOM_USERS");
-
+    //this.loadContent();
+    this.appendView(new HeaderView());
     this.appendView(new PageHolderView());
 
-    this.prependView(new HeaderView());
 
 
   }

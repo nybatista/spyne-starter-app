@@ -9,6 +9,20 @@ export class ProfileTraits extends SpyneTrait {
   }
 
 
+  static profileTraits$mapProfiles(data){
+      const mapProfiles = (profile)=>{
+          console.log('profile is ',profile);
+        return profile;
+      };
+
+        return data.map(mapProfiles);
+
+  }
+
+
+
+
+
 
 
 }
