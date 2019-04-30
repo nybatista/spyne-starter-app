@@ -22,8 +22,7 @@ export class ProfilesPageView extends ViewStream {
   }
 
   onProfilesData(e){
-    console.log('profiles returned ',e);
-    this.appendView(new ProfilesContentView({data:e.payload}))
+    this.appendView(new ProfilesContentView({data:e.payload}), '.page-content');
   }
 
   broadcastEvents() {

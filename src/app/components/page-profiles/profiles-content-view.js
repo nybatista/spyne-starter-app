@@ -5,7 +5,8 @@ import {ViewStream} from 'spyne';
 export class ProfilesContentView extends ViewStream {
 
   constructor(props = {}) {
-
+    props.id='profiles-menu';
+    props.template=require('./templates/profiles-menu.tmpl.html');
     super(props);
 
   }

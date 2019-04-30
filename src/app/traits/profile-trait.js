@@ -1,4 +1,6 @@
 import {SpyneTrait} from 'spyne';
+const R = require('ramda');
+import {compose, map, range,reduce} from 'ramda';
 
 export class ProfileTraits extends SpyneTrait {
 
@@ -7,16 +9,49 @@ export class ProfileTraits extends SpyneTrait {
     super(context, traitPrefix);
 
   }
+  static profileTrait$CreateRandomArr(n=1){
+    const shuffler = R.curry(function(random, list) {
+          let idx = -1;
+          let len = list.length;
+          let position;
+          let result = [];
+          while (++idx < len) {
+            position = Math.floor((idx + 1) * random());
+            result[idx] = result[position];
+            result[position] = list[idx];
+          }
+          return result;
+        });
+       const shuffle = shuffler(Math.random);
+       return shuffle(range(0,n));
+  }
+
+  static profileTrait$CreateAnimalAvatarsArr(){
+    const pad=(number, length=4) => {
+      return (Array(length).join('0') + number).slice(-length);
+    };
+
+    const animalAvatarLinks = n=>`//assetscontainer.com/starter-app/imgs/animals_${pad(n)}.jpg`;
+    let arr = ProfileTraits.profileTrait$CreateRandomArr(18);
+
+    return map(animalAvatarLinks, arr);
+  }
 
 
-  static profileTraits$mapProfiles(data){
-      const mapProfiles = (profile)=>{
-          console.log('profile is ',profile);
+  static profileTraits$mapProfiles(response){
+    let animatAvatarLinks = ProfileTraits.profileTrait$CreateAnimalAvatarsArr();
+
+
+    const mapProfiles = (profile)=>{
+        profile.photo = profile.picture.large;
+        profile.userName = `${profile.name.first} ${profile.name.last}`;
+        profile.avatar = animatAvatarLinks.shift();
         return profile;
       };
 
-        return data.map(mapProfiles);
+      //const lensPic = lensPath(['picture', 'large']);
 
+        return map(mapProfiles, response.users);
   }
 
 
