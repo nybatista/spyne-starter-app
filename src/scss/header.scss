@@ -1,22 +1,23 @@
 #header-view{
   position:relative;
   height:50px;
-  background: darkblue;
   width:100%;
   color:#fff;
+  background: $slate;
+
 
   .header-content {
     position:relative;
     display:flex;
-    background: darkblue;
+    background: $slate;
     justify-content: space-between;
     margin: 0 20px;
     height: 100%;
     align-items: center;;
-    color:#fff;
+    color:$warmRed;
 
     a {
-      color: #fff;
+      color: antiquewhite;
       font-size:.9rem;
       text-decoration: none;
     }

@@ -26,6 +26,14 @@ export class ProfileTraits extends SpyneTrait {
        return shuffle(range(0,n));
   }
 
+  static profileTrait$InitCapWords(str){
+    const replacer = (cxt,p1,p2)=>{
+      return String(p1).toUpperCase()+p2;
+    };
+    return str.replace(/(\b\w)(\S*)/gm, replacer)
+
+  }
+
   static profileTrait$CreateAnimalAvatarsArr(){
     const pad=(number, length=4) => {
       return (Array(length).join('0') + number).slice(-length);
@@ -45,6 +53,7 @@ export class ProfileTraits extends SpyneTrait {
     const mapProfiles = (profile)=>{
         profile.photo = profile.picture.large;
         profile.userName = `${profile.name.first} ${profile.name.last}`;
+        profile.loc =  ProfileTraits.profileTrait$InitCapWords(`${profile.location.city}, ${profile.location.state}`);
         profile.avatar = animatAvatarLinks.shift();
         return profile;
       };

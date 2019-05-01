@@ -16,20 +16,24 @@
     position: relative;
     width: 270px;
     height: 385px;
-    background: #fefefe;
+    background: $beigeLight;
    // margin: 10px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
+
+
+
+
     div.avatar {
       position: relative;
       width: 125px;
       height: 125x;
       border-radius: 50%;
-      border: 1px solid #ccc;
-      padding:6px;
+      border: 2px solid #ddd;
+      padding:4px;
       div.img-container {
         position: relative;
         width:100%;
@@ -54,14 +58,36 @@
 
       }
 
-      h3 {
-        position: relative;
-        //bottom:0;
-        // z-index: 23432
-      ;
+    }
+
+    header{
+      position: relative;
+      text-align: center;
+      margin:10px 0 0 0;
+
+      &.location{
+        position: absolute;
+        bottom:30px;
+        p{
+          font-style: italic;;
+          font-size:.8rem;
+        }
+      }
+      p,h3,h4,h5{
+        position:relative;
+        margin:0;
+        padding:0;
+      }
+      color: $blue;
+
+      h3{
+        color: $warmRed;
+        margin: 0 0 4px 0;
       }
 
+
     }
+
   }
 
 }
