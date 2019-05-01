@@ -53,6 +53,7 @@ export class ProfileTraits extends SpyneTrait {
     const mapProfiles = (profile)=>{
         profile.photo = profile.picture.large;
         profile.userName = `${profile.name.first} ${profile.name.last}`;
+        profile.profileId = String(profile.name.last).toLowerCase();
         profile.loc =  ProfileTraits.profileTrait$InitCapWords(`${profile.location.city}, ${profile.location.state}`);
         profile.avatar = animatAvatarLinks.shift();
         return profile;

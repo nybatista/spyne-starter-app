@@ -95,12 +95,6 @@ h4 {
    margin-top: calc((#{$baseline} - #{$h4}) + #{$baseline}*2);
  }
 
-h4.tooltip {
-  font-size: $h4*1.125;
-  line-height: $h4*1.125;
-  margin-top: calc((#{$baseline} - #{$h4}) + #{$baseline}*2);
-}
-
 h5 {
   font-size: $h5;
   line-height: $h5;
