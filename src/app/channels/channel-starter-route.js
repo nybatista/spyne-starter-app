@@ -7,7 +7,7 @@ export class ChannelStarterRoute extends Channel {
 
   constructor(name, props = {}) {
     name = "CHANNEL_STARTER_ROUTE";
-    props.sendCurrentPayload = false;
+    props.sendCachedPayload = false;
     super(name, props);
     new RouteTrait(this);
 

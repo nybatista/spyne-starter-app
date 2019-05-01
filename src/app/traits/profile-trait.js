@@ -9,7 +9,7 @@ export class ProfileTraits extends SpyneTrait {
     super(context, traitPrefix);
 
   }
-  static profileTrait$CreateRandomArr(n=1){
+  static profileTraits$CreateRandomArr(n=1){
     const shuffler = R.curry(function(random, list) {
           let idx = -1;
           let len = list.length;
@@ -26,7 +26,7 @@ export class ProfileTraits extends SpyneTrait {
        return shuffle(range(0,n));
   }
 
-  static profileTrait$InitCapWords(str){
+  static profileTraits$InitCapWords(str){
     const replacer = (cxt,p1,p2)=>{
       return String(p1).toUpperCase()+p2;
     };
@@ -34,27 +34,27 @@ export class ProfileTraits extends SpyneTrait {
 
   }
 
-  static profileTrait$CreateAnimalAvatarsArr(){
+  static profileTraits$CreateAnimalAvatarsArr(){
     const pad=(number, length=4) => {
       return (Array(length).join('0') + number).slice(-length);
     };
 
     const animalAvatarLinks = n=>`//assetscontainer.com/starter-app/imgs/animals_${pad(n)}.jpg`;
-    let arr = ProfileTraits.profileTrait$CreateRandomArr(18);
+    let arr = ProfileTraits.profileTraits$CreateRandomArr(18);
 
     return map(animalAvatarLinks, arr);
   }
 
 
   static profileTraits$mapProfiles(response){
-    let animatAvatarLinks = ProfileTraits.profileTrait$CreateAnimalAvatarsArr();
+    let animatAvatarLinks = ProfileTraits.profileTraits$CreateAnimalAvatarsArr();
 
 
     const mapProfiles = (profile)=>{
         profile.photo = profile.picture.large;
         profile.userName = `${profile.name.first} ${profile.name.last}`;
         profile.profileId = String(profile.name.last).toLowerCase();
-        profile.loc =  ProfileTraits.profileTrait$InitCapWords(`${profile.location.city}, ${profile.location.state}`);
+        profile.loc =  ProfileTraits.profileTraits$InitCapWords(`${profile.location.city}, ${profile.location.state}`);
         profile.avatar = animatAvatarLinks.shift();
         return profile;
       };
@@ -62,6 +62,12 @@ export class ProfileTraits extends SpyneTrait {
       //const lensPic = lensPath(['picture', 'large']);
 
         return map(mapProfiles, response.users);
+  }
+
+  static profileTraits$GetProfileItemData(profileId, data){
+    const filterByProfileId = R.filter(R.propEq('profileId', profileId));
+    return  R.compose(R.head, filterByProfileId)(data);
+
   }
 
 

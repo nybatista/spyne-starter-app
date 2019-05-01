@@ -23,6 +23,15 @@ export class PageTraits extends SpyneTrait {
   }
 
 
+  static pageTrait$CheckToDispose(e){
+    let {pageId} = e.props();
+    if (pageId!==this.props.pageId){
+      this.disposeViewStream();
+    }
+
+  }
+
+
   static pageTrait$InitPage(){
     this.addChannel("CHANNEL_STARTER_ROUTE");
 

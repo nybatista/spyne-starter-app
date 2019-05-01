@@ -22,6 +22,8 @@ export class PageHolderView extends ViewStream {
 
   onPageEvent(e){
     let {pageId} = e.props();
+
+    console.log('page event ',e.props());
     const PageClass = this.pageTrait$GetPageClass(pageId);
     this.appendView(new PageClass());
 

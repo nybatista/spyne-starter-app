@@ -9,6 +9,7 @@ export class HomePageView extends ViewStream {
     props.class='page';
     props.template = require('./templates/home.tmpl.html');
     super(props);
+    this.props.pageId='home';
     new PageTraits(this);
   }
 

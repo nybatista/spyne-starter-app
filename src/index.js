@@ -22,7 +22,9 @@ const spyneApp = new SpyneApp({
           about: 'about',
           profiles: {
             routePath: {
-              routeName: 'profileId'
+              routeName: 'profileId',
+              menu: '^$',
+              tester: 'ubu'
             }
           }
 
