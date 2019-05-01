@@ -15,8 +15,14 @@ export class ProfilesContentView extends ViewStream {
   addActionListeners() {
     // return nexted array(s)
     return [
-        ['CHANNEL_STARTER_ROUTE_PROFILE_EVENT', 'onProfileEvent']
+        ['CHANNEL_STARTER_ROUTE_PROFILE_EVENT', 'onProfileEvent'],
+        ["CHANNEL_UI_ANIMATIONEND_EVENT", 'onTransitionEnd']
     ];
+  }
+
+  onTransitionEnd(e){
+    console.log('transition end event ',e);
+    this.props.el$.inline = 'display:none';
   }
 
 
@@ -29,13 +35,15 @@ export class ProfilesContentView extends ViewStream {
   broadcastEvents() {
     // return nexted array(s)
     return [
-        ['li', 'click']
+        ['li', 'click'],
+        ['ul', 'animationend']
     ];
   }
 
   afterRender() {
     console.log('props data ',this.props.data);
     this.addChannel("CHANNEL_STARTER_ROUTE");
+    this.addChannel("CHANNEL_UI")
   }
 
 }

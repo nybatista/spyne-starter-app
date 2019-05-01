@@ -1,6 +1,8 @@
-@import "globals/fluid-type";
-@import "globals/globals";
+@import "globals/fluid-type.scss";
+@import "globals/_mq.scss";
+@import "globals/globals.scss";
 @import "header.scss";
+@import "pages.scss";
 @import "profiles.scss";
 @import "profile-item.scss";
 
@@ -20,33 +22,13 @@ body{
   font-family: 'Ubuntu', sans-serif;
 
   h1{
+    position: relative;
     color: $blue;
     text-align: center;
+    margin: 2rem 0;
   }
 
-  article.page{
 
-
-
-
-    .page-content{
-      position:relative;
-      display:flex;
-      flex-direction: column;
-      align-items: center;;
-      width:100vw;
-      height: calc(100vh - 100px);
-
-       &.home-page, &.about-page{
-
-         justify-content: center;
-         align-content: center;
-
-      }
-
-
-    }
-  }
 
 
 

@@ -1,9 +1,10 @@
 #header-view{
-  position:relative;
+  position:fixed;
   height:50px;
   width:100%;
   color:#fff;
   background: $slate;
+  z-index: 100;
 
 
   .header-content {
@@ -14,13 +15,24 @@
     margin: 0 20px;
     height: 100%;
     align-items: center;;
-    color:$warmRed;
 
     a {
-      color: antiquewhite;
+      color:#FFB89F;
       font-size:.9rem;
       text-decoration: none;
       font-weight: 700;
+      opacity:.9;
+      &:hover{
+        opacity: 1;
+      }
+
+      &.selected{
+        color:$warmRed;//  #F7C2B0;
+        pointer-events: none;
+        cursor:initial;
+        opacity:.8;
+
+      }
     }
 
 

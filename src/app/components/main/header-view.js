@@ -14,7 +14,23 @@ export class HeaderView extends ViewStream {
 
   addActionListeners() {
     // return nexted array(s)
-    return [];
+    return [
+        ["CHANNEL_ROUTE_.*_EVENT", 'onRouteChange']
+    ];
+  }
+
+  onRouteChange(e){
+
+    let {routeData} = e.props();
+    let {pageId} = routeData;
+
+    if (pageId!==undefined){
+      let sel = `#${pageId}`;
+      this.props.el$('a').setActiveItem('selected', sel);
+
+    }
+
+    console.log('route change in header ',{pageId},e);
   }
 
   broadcastEvents() {
@@ -25,7 +41,7 @@ export class HeaderView extends ViewStream {
   }
 
   afterRender() {
-
+      this.addChannel("CHANNEL_ROUTE");
   }
 
 }
