@@ -19,6 +19,11 @@ body{
   background: $beigeMed;
   font-family: 'Ubuntu', sans-serif;
 
+  h1{
+    color: $blue;
+    text-align: center;
+  }
+
   article.page{
 
 
@@ -29,6 +34,15 @@ body{
       display:flex;
       flex-direction: column;
       align-items: center;;
+      width:100vw;
+      height: calc(100vh - 100px);
+
+       &.home-page, &.about-page{
+
+         justify-content: center;
+         align-content: center;
+
+      }
 
 
     }

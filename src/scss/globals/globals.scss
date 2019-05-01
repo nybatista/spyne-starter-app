@@ -5,3 +5,32 @@ $warmRed: #E97643;
 $blue: #232E69;
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,500,700');
 
+
+
+.btn{
+  position:relative;
+  border: 0 none;
+  border-radius: 6px 6px 6px 6px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  font-size: 1.125em;
+  margin: 2rem 0.625em;
+  outline: 0 none;
+  text-decoration: none;
+  line-height: inherit;
+  padding: 0.575em 1.125em;
+  //margin-bottom: 0.625em;
+  background: $blue;
+  opacity: 1;
+  &:hover{
+    opacity:.8;
+  }
+
+}
+
+

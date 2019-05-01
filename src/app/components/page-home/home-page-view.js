@@ -22,7 +22,9 @@ export class HomePageView extends ViewStream {
 
   broadcastEvents() {
     // return nexted array(s)
-    return [];
+    return [
+        ['.btn', 'click']
+    ];
   }
 
   afterRender() {
