@@ -2,6 +2,7 @@ import {SpyneTrait} from 'spyne';
 import {HomePageView} from '../components/page-home/home-page-view';
 import {ProfilesPageView} from '../components/page-profiles/profiles-page-view';
 import {AboutPageView} from '../components/page-about/about-page-view';
+import {Page404} from '../components/main/page-404';
 
 export class PageTraits extends SpyneTrait {
 
@@ -15,7 +16,8 @@ export class PageTraits extends SpyneTrait {
     const classHashObj = {
       'home' : HomePageView,
       'profiles' : ProfilesPageView,
-      'about' :  AboutPageView
+      'about' :  AboutPageView,
+      '404' : Page404
     };
 
     return classHashObj[pageId];

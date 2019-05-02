@@ -26,7 +26,8 @@ const spyneApp = new SpyneApp({
             routePath: {
               routeName: 'profileId'
             }
-          }
+          },
+          404: ".*"
 
 
         }

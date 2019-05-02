@@ -1,36 +1,27 @@
 // import Rx from "rxjs";
 // import * as R from "ramda";
-import {ViewStream} from 'spyne';
+import {ChannelPayloadFilter, ViewStream} from 'spyne';
+import {FilterTraits} from '../../traits/filter-traits';
 
 export class HeaderView extends ViewStream {
 
   constructor(props = {}) {
       props.tagName='section';
       props.id='header-view';
+      props.traits = FilterTraits;
       props.template = require("./templates/header.tmpl.html");
     super(props);
-
   }
 
   addActionListeners() {
-    // return nexted array(s)
     return [
-        ["CHANNEL_ROUTE_.*_EVENT", 'onRouteChange']
+        ["CHANNEL_ROUTE_.*_EVENT", 'onRouteChange', this.filters$PageIdFilter()]
     ];
   }
 
   onRouteChange(e){
-
-    let {routeData} = e.props();
-    let {pageId} = routeData;
-
-    if (pageId!==undefined){
-      let sel = `#${pageId}`;
-      this.props.el$('a').setActiveItem('selected', sel);
-
-    }
-
-    console.log('route change in header ',{pageId},e);
+    let {pageId} = e.props().routeData;
+    this.props.el$('a').setActiveItem('selected', `#${pageId}`);
   }
 
   broadcastEvents() {
