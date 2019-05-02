@@ -24,17 +24,17 @@
 
     <header class="location">
         <h4>from: {{country}}</h4>
+        {{#location}}
+        <p>{{street}}</p>
+        {{/location}}
         <p>{{loc}}</p>
+        <p>phone: {{cell}}</p>
 
     </header>
 
-    {{#location}}
-        <p>{{street}}</p>
-    <p>{{city}}</p>
-    <p>{{state}}</p>
-    {{/location}}
 
 
+    <header>
     {{#dob}}
         <h4>age: {{age}}</h4>
         <h5>birthday: {{date}}</h5>
@@ -44,5 +44,6 @@
         <h4>{{password}}</h4>
             <p>{{uuid}}</p>
     {{/login}}
+    </header>
 
 </div>

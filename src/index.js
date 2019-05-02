@@ -15,7 +15,7 @@ const spyneApp = new SpyneApp({
 
 
     ROUTE: {
-
+        type: "slash",
       routes: {
 
         routePath: {

@@ -31,16 +31,11 @@ export class ProfileItemView extends ViewStream {
 
   afterRender() {
 
-    //this.addChannel("CHANNEL_STARTER_ROUTE");
 
     this.addChannel('CHANNEL_APP_DATA');
 
-   const delayer = ()=>{
-     if (this.props !==undefined) {
-       this.props.el$.addClass('reveal');
-     }
-   }
-    window.setTimeout(delayer, 10);
+
+   this.props.el$.addAnimClass('reveal');
   }
 
 }
