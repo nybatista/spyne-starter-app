@@ -1,17 +1,48 @@
+
 <div class="images">
-    <img class="avatar" src="{{avatar}}" />
-    <img class="photo" src="{{photo}}" />
+    <div class="avatar photo">
+        <div class="img-container">
+            <img src="{{photo}}" width="100%"/>
+        </div>
+    </div>
+
+    <div class="avatar small">
+        <div class="img-container">
+            <img src="{{avatar}}" width="100%"/>
+        </div>
+    </div>
+
 
 </div>
 
 <div class="info">
     <header class="id">
+        <h2>{{fullName}}</h2>
         <h3>{{userName}}</h3>
         <h4>{{email}}</h4>
     </header>
 
     <header class="location">
+        <h4>from: {{country}}</h4>
         <p>{{loc}}</p>
+
     </header>
+
+    {{#location}}
+        <p>{{street}}</p>
+    <p>{{city}}</p>
+    <p>{{state}}</p>
+    {{/location}}
+
+
+    {{#dob}}
+        <h4>age: {{age}}</h4>
+        <h5>birthday: {{date}}</h5>
+    {{/dob}}
+
+    {{#login}}
+        <h4>{{password}}</h4>
+            <p>{{uuid}}</p>
+    {{/login}}
 
 </div>

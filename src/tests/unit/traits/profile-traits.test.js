@@ -24,4 +24,13 @@ describe('ProfileTraits methods', () => {
 
   })
 
+  it ('should return the country name by code ', ()=>{
+
+    let countryCode = "DE";
+
+    let country = ProfileTraits.profileTraits$GetCountryByCode(countryCode);
+    expect(country).to.equal('Germany');
+
+  })
+
 });

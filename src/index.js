@@ -5,6 +5,7 @@ import {ChannelStarterRoute} from './app/channels/channel-starter-route';
 import {ProfileTraits} from './app/traits/profile-trait';
 
 
+
 const spyneApp = new SpyneApp({
 
   debug:true,
