@@ -8,7 +8,7 @@ export class ProfilesPageView extends ViewStream {
 
   constructor(props = {}) {
     props.tagName = 'article';
-    props.id='page-profiles-page';
+    props.id='page-profiles';
     props.class='page';
     props.template = require('./templates/profiles.tmpl.html');
     super(props);
@@ -21,8 +21,21 @@ export class ProfilesPageView extends ViewStream {
     return [
       ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'onStartDispose'],
       ['CHANNEL_STARTER_ROUTE_PROFILE_EVENT', 'onProfileEvent'],
-      ['CHANNEL_PROFILES_DATA_EVENT', 'onProfilesData']
+      ['CHANNEL_PROFILES_DATA_EVENT', 'onProfilesData'],
+        ['CHANNEL_ROUTE_DEEPLINK_EVENT', 'onDeepLink']
     ];
+  }
+
+  onDeepLink(e){
+
+    let {routeData} = e.props();
+    let {profileId} = routeData;
+    if (profileId!==undefined && profileId!=='menu'){
+      // this.loadProfile(profileId);
+
+    }
+
+
   }
 
   onStartDispose(e){
@@ -38,21 +51,31 @@ export class ProfilesPageView extends ViewStream {
   onProfileEvent(e){
     console.log("profile event is ",e);
     let {profileId} = e.props();
+      this.loadProfile(profileId);
+
+  }
+
+  loadProfile(profileId){
+
     let data = this.profileTraits$GetProfileItemData(profileId, this.props.data);
 
     this.appendView(new ProfileItemView({data}), '.page-content');;
     console.log('profileItemData ',data);
-
   }
 
   onProfilesData(e){
     this.props.data = e.payload;
     this.appendView(new ProfilesContentView({data:this.props.data}), '.page-content');
+
+    //this.addChannel("CHANNEL_ROUTE");
   }
 
   broadcastEvents() {
     // return nexted array(s)
-    return [];
+    return [
+        ['#profile-back-btn', 'click']
+
+    ];
   }
 
   afterRender() {

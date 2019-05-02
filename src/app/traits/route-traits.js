@@ -1,5 +1,5 @@
 import {SpyneTrait} from 'spyne';
-import {find} from 'ramda';
+import {find, propEq} from 'ramda';
 
 export class RouteTrait extends SpyneTrait {
 
@@ -9,12 +9,26 @@ export class RouteTrait extends SpyneTrait {
 
   }
 
-  static routeTrait$ParseRouteData(pathsChanged, routeData={}){
+  static routeTrait$ParseRouteData(pathsChanged, routeData={}, isDeepLink){
+
+    const actionHash = {
+      pageId: "CHANNEL_STARTER_ROUTE_PAGE_EVENT",
+      profileId: "CHANNEL_STARTER_ROUTE_PROFILE_EVENT",
+      profileMenu: "CHANNEL_STARTER_ROUTE_PROFILE_MENU_EVENT",
+      profileMenuDeeplink: "CHANNEL_STARTER_ROUTE_PROFILE_MENU_DEEPLINK_EVENT"
+    };
 
     const isChanged = (str)=>pathsChanged.indexOf(str)>=0;
-    const changedParam = find(isChanged, ['pageId', 'profileId']);
+    let changedParam = find(isChanged, ['pageId', 'profileId']);
+    const isMenu = propEq('profileId', 'menu')(routeData);
+    changedParam  = isMenu === true ? 'profileMenu' : changedParam;
 
-    const action = changedParam === 'pageId' ? "CHANNEL_STARTER_ROUTE_PAGE_EVENT" : "CHANNEL_STARTER_ROUTE_PROFILE_EVENT";
+    if(changedParam === 'profileMenu' && isDeepLink===true){
+      changedParam = 'profileMenuDeeplink';
+    }
+
+
+    const action =  actionHash[changedParam];
     const payload = {}
     //console.log('route event is ',{changedParam, action, pathsChanged,routeData});
 

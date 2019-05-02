@@ -16,9 +16,13 @@ export class PageHolderView extends ViewStream {
   addActionListeners() {
     // return nexted array(s)
     return [
-        ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'onPageEvent']
+      ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'onPageEvent'],
+          ['CHANNEL_STARTER_ROUTE_PROFILE_MENU_DEEPLINK_EVENT', 'onPageEvent']
     ];
   }
+
+
+
 
   onPageEvent(e){
     let {pageId} = e.props();

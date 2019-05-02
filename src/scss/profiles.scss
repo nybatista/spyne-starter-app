@@ -1,143 +1,164 @@
+#page-profiles {
 
-div.avatar {
-  position: relative;
-  width: 10rem;
-  height:10rem;
-  border-radius: 50%;
-  border: 2px solid #ddd;
-  padding:4px;
 
-  &.small{
-    width:5rem;
-    height:5em;
+  #profile-back-btn{
+    position:fixed;
+    width: 40px;
+    top: 70px;
+    left: 10px;
+    opacity: .2;
+    cursor:pointer;
+    pointer-events:all;
+
+    &:hover{
+      opacity:.3;
+    }
+
   }
 
-  div.img-container {
+  div.avatar {
     position: relative;
-    width:100%;
-    height:100%;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
+    border: 2px solid #ddd;
+    padding: 4px;
 
-    overflow: hidden;;
+    &.small {
+      width: 5rem;
+      height: 5em;
+    }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-
-    img {
+    div.img-container {
       position: relative;
-      min-width: 130%;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
 
-      //position:absolute;
+      overflow: hidden;;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+
+      img {
+        position: relative;
+        min-width: 130%;
+
+        //position:absolute;
+
+      }
 
     }
 
   }
 
-}
-#profiles-menu{
+  #profiles-menu {
 
-  position: sticky;
+    position: sticky;
 
-  //display: flex;
-  top:100px;
-  width: 100vw;
-  height: 100vh;
-  //flex-wrap: wrap;
-  list-style-type: none;
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minMax(100px, 370px));
-  grid-row-gap: 30px;
-  box-sizing: border-box;
-  justify-content: center;
-  margin:10px 0 100px 0;
-  visibility: visible;
- // transition: all 1.5s ease-in-out;
-
-
-  left:0;
-  opacity:1;
-  @keyframes bounceLeft {
-    25%  {transform: translate3d(2vw, 0px, 0); opacity: 1;}
-    100%  {transform: translate3d(-10vw,0px, 0); opacity: 0;}
-  }
+    //display: flex;
+    top: 100px;
+    width: 100vw;
+    height: 100vh;
+    //flex-wrap: wrap;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minMax(100px, 370px));
+    grid-row-gap: 30px;
+    box-sizing: border-box;
+    justify-content: center;
+    margin: 10px 0 100px 0;
+    visibility: visible;
+    // transition: all 1.5s ease-in-out;
 
 
-  &.hide{
+    left: 0;
+    opacity: 1;
+    @keyframes bounceLeft {
+      25% {
+        transform: translate3d(2vw, 0px, 0);
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(-10vw, 0px, 0);
+        opacity: 0;
+      }
+    }
+
+
+    &.hide {
 
       animation-name: bounceLeft;
       animation-duration: .75s;
       animation-fill-mode: forwards;
 
-  }
+    }
 
 
-
-
-  li {
-    position: relative;
-   width: 340px;
-
-    height: 385px;
-    background: $beigeLight;
-   // margin: 10px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
-
-
-
-
-
-
-    header{
+    li {
       position: relative;
-      text-align: center;
-      margin:10px 0 0 0;
+      width: 340px;
 
-      &.location{
-        position: absolute;
-        bottom:30px;
-        p{
-          font-style: italic;;
-          font-size:.8rem;
+      height: 385px;
+      background: $beigeLight;
+      // margin: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
+
+
+      header {
+        position: relative;
+        text-align: center;
+        margin: 10px 0 0 0;
+
+        &.location {
+          position: absolute;
+          bottom: 30px;
+
+          p {
+            font-style: italic;;
+            font-size: .8rem;
+          }
+        }
+
+        p, h3, h4, h5 {
+          position: relative;
+          margin: 0;
+          padding: 0;
+        }
+
+        color: $blue;
+
+        h3 {
+          color: $warmRed;
+          margin: 0 0 4px 0;
+        }
+
+
+      }
+
+    }
+
+    @media(max-width: 1080px) {
+      grid-template-columns: repeat(auto-fill, 90%);
+      li {
+        width: 94%;
+        height: 70vh;
+
+        div.avatar {
+          width: 24rem;
+          height: 24rem;
         }
       }
-      p,h3,h4,h5{
-        position:relative;
-        margin:0;
-        padding:0;
-      }
-      color: $blue;
-
-      h3{
-        color: $warmRed;
-        margin: 0 0 4px 0;
-      }
-
-
     }
 
+
   }
-
-  @media(max-width:1080px) {
-    grid-template-columns: repeat(auto-fill, 90%);
-    li {
-      width:94%;
-      height:70vh;
-
-      div.avatar {
-        width: 24rem;
-        height: 24rem;
-      }
-    }
-  }
-
-
-
 }

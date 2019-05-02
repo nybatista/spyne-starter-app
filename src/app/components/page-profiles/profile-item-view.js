@@ -7,6 +7,7 @@ export class ProfileItemView extends ViewStream {
   constructor(props = {}) {
     props.id='profile-item-view';
     props.class=`profile-item ${props.data.profileId}`;
+    props.animInClass = 'reveal';
     props.template=require('./templates/profile-item.tmpl.html');
     super(props);
 
@@ -14,7 +15,13 @@ export class ProfileItemView extends ViewStream {
 
   addActionListeners() {
     // return nexted array(s)
-    return [];
+    return [
+        ['CHANNEL_STARTER_ROUTE_.*_EVENT', 'disposeViewStream']
+    ];
+  }
+
+  onRouteEvent(){
+    console.log('item route event ');
   }
 
   broadcastEvents() {
@@ -24,6 +31,10 @@ export class ProfileItemView extends ViewStream {
 
   afterRender() {
 
+    this.addChannel("CHANNEL_STARTER_ROUTE");
+
+   const delayer = ()=>this.props.el$.addClass('reveal');
+    window.setTimeout(delayer, 10);
   }
 
 }

@@ -14,8 +14,8 @@ export class ChannelStarterRoute extends Channel {
   }
 
   onRouteChange(e){
-    let {pathsChanged, routeData} = e.props();
-    let {action, payload} = this.routeTrait$ParseRouteData(pathsChanged, routeData);
+    let {pathsChanged, routeData, isDeepLink} = e.props();
+    let {action, payload} = this.routeTrait$ParseRouteData(pathsChanged, routeData, isDeepLink);
     this.sendChannelPayload(action,payload);
   }
 
@@ -27,6 +27,7 @@ export class ChannelStarterRoute extends Channel {
   addRegisteredActions() {
     return [
       "CHANNEL_STARTER_ROUTE_PAGE_EVENT",
+      "CHANNEL_STARTER_ROUTE_PROFILE_MENU_EVENT",
       "CHANNEL_STARTER_ROUTE_PROFILE_EVENT"
     ];
   }

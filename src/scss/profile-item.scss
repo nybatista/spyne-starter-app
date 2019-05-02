@@ -2,6 +2,21 @@
 
   .profile-item {
     position:relative;
+
+    opacity:0;
+   // transition-delay:1s;
+
+   // transition-property: opacity;
+   // transition-duration: 1s;
+   // transition-delay: 1s;
+    transition: opacity .5s ease .75s;
+
+    &.reveal{
+      opacity:1;
+    }
+
+
+
     div.images {
       position: relative;
       display: flex;
@@ -9,6 +24,7 @@
       align-items: center;
       width: 250px;
       margin-left: 1rem;
+
 
       div.avatar {
         position: relative;
@@ -18,7 +34,7 @@
         border: 2px solid #ddd;
         padding: 4px;
 
-        &.small {
+        &#small-img.small {
           position: absolute;
           bottom: 0;
           right: 0;
