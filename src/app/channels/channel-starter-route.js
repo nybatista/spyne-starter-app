@@ -14,9 +14,11 @@ export class ChannelStarterRoute extends Channel {
   }
 
   onRouteChange(e){
-    let {pathsChanged, routeData, isDeepLink} = e.props();
+    let {pathsChanged, pathInnermost, routeData, isDeepLink} = e.props();
     let {action, payload} = this.routeTrait$ParseRouteData(pathsChanged, routeData, isDeepLink);
-    this.sendChannelPayload(action,payload);
+    if (action!==undefined) {
+      this.sendChannelPayload(action, payload);
+    }
   }
 
   onChannelInitialized() {
@@ -28,6 +30,7 @@ export class ChannelStarterRoute extends Channel {
     return [
       "CHANNEL_STARTER_ROUTE_PAGE_EVENT",
       "CHANNEL_STARTER_ROUTE_PROFILE_MENU_EVENT",
+        "CHANNEL_STARTER_ROUTE_PROFILE_MENU_DEEPLINK_EVENT",
       "CHANNEL_STARTER_ROUTE_PROFILE_EVENT"
     ];
   }

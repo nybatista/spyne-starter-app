@@ -3,6 +3,7 @@ import {SpyneApp, ViewStream, ChannelFetch} from 'spyne';
 import {MainView} from './app/components/main/main-view';
 import {ChannelStarterRoute} from './app/channels/channel-starter-route';
 import {ProfileTraits} from './app/traits/profile-trait';
+import {ChannelAppData} from './app/channels/channel-app-data';
 
 
 
@@ -23,9 +24,7 @@ const spyneApp = new SpyneApp({
           about: 'about',
           profiles: {
             routePath: {
-              routeName: 'profileId',
-              menu: '',
-              tester: 'ubu'
+              routeName: 'profileId'
             }
           }
 
@@ -58,6 +57,7 @@ let randUserData = {
   url: "//assetscontainer.com/starter-app/random-users.json",
   mapFn: ProfileTraits.profileTraits$mapProfiles
 };
+spyneApp.registerChannel(new ChannelAppData());
 
 spyneApp.registerChannel(new ChannelStarterRoute());
 spyneApp.registerChannel(new ChannelFetch("CHANNEL_PROFILES", randUserData))

@@ -10,7 +10,6 @@ export class ProfilesPageView extends ViewStream {
     props.tagName = 'article';
     props.id='page-profiles';
     props.class='page';
-    props.template = require('./templates/profiles.tmpl.html');
     super(props);
     new PageTraits(this);
     new ProfileTraits(this);
@@ -20,9 +19,9 @@ export class ProfilesPageView extends ViewStream {
     // return nexted array(s)
     return [
       ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'onStartDispose'],
-      ['CHANNEL_STARTER_ROUTE_PROFILE_EVENT', 'onProfileEvent'],
+      /*['CHANNEL_STARTER_ROUTE_PROFILE_EVENT', 'onProfileEvent'],
       ['CHANNEL_PROFILES_DATA_EVENT', 'onProfilesData'],
-        ['CHANNEL_ROUTE_DEEPLINK_EVENT', 'onDeepLink']
+        ['CHANNEL_ROUTE_DEEPLINK_EVENT', 'onDeepLink']*/
     ];
   }
 
@@ -31,7 +30,7 @@ export class ProfilesPageView extends ViewStream {
     let {routeData} = e.props();
     let {profileId} = routeData;
     if (profileId!==undefined && profileId!=='menu'){
-      // this.loadProfile(profileId);
+       this.loadProfile(profileId);
 
     }
 
@@ -67,7 +66,7 @@ export class ProfilesPageView extends ViewStream {
     this.props.data = e.payload;
     this.appendView(new ProfilesContentView({data:this.props.data}), '.page-content');
 
-    //this.addChannel("CHANNEL_ROUTE");
+  //  this.addChannel("CHANNEL_ROUTE");
   }
 
   broadcastEvents() {
@@ -81,8 +80,9 @@ export class ProfilesPageView extends ViewStream {
   afterRender() {
     this.pageTrait$InitPage();
 
-    this.addChannel("CHANNEL_PROFILES");
+    //this.addChannel("CHANNEL_PROFILES");
 
+    this.appendView(new ProfilesContentView());
 
 
   }

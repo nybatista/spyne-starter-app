@@ -16,7 +16,7 @@ export class ProfileItemView extends ViewStream {
   addActionListeners() {
     // return nexted array(s)
     return [
-        ['CHANNEL_STARTER_ROUTE_.*_EVENT', 'disposeViewStream']
+        ['CHANNEL_APP_DATA_PROFILE_EVENT', 'disposeViewStream']
     ];
   }
 
@@ -31,9 +31,15 @@ export class ProfileItemView extends ViewStream {
 
   afterRender() {
 
-    this.addChannel("CHANNEL_STARTER_ROUTE");
+    //this.addChannel("CHANNEL_STARTER_ROUTE");
 
-   const delayer = ()=>this.props.el$.addClass('reveal');
+    this.addChannel('CHANNEL_APP_DATA');
+
+   const delayer = ()=>{
+     if (this.props !==undefined) {
+       this.props.el$.addClass('reveal');
+     }
+   }
     window.setTimeout(delayer, 10);
   }
 

@@ -58,6 +58,8 @@ export class MainView extends ViewStream {
     this.appendView(new HeaderView());
     this.appendView(new PageHolderView());
 
+    this.addChannel("CHANNEL_APP_DATA");
+
 
 
   }
