@@ -27,20 +27,20 @@ export class ProfilesContentView extends ViewStream {
 
 
   checkToAddMenu(e, showMenu=true){
-    if (this.props.el$('#profiles-menu').exists===false){
+   /* if (this.props.el$('#profiles-menu').exists===false){
       let {payload} = e;
       this.appendView(new ProfilesMenuView({data:payload}), '.profiles-menu-holder' )
       this.props.profileMenu$ = this.props.el$('#profiles-menu');
       this.showMenu(showMenu);
-    }
+    }*/
   }
 
   showMenu(bool=true){
-    if ( this.props.profileMenu$!==undefined) {
+   /* if ( this.props.profileMenu$!==undefined) {
       let inlineTxt = bool === true ? '' : 'display:none';
       this.props.profileMenu$.toggleClass('hide', !bool)
       this.props.profileMenu$.inline = inlineTxt;
-    }
+    }*/
   }
 
   onProfileDataEvent(e){
@@ -80,6 +80,7 @@ export class ProfilesContentView extends ViewStream {
   }
 
   afterRender() {
+    this.appendView(new ProfilesMenuView(), '.profiles-menu-holder');
     this.addChannel("CHANNEL_APP_DATA");
   }
 
