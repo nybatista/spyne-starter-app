@@ -2,6 +2,7 @@
 // import * as R from "ramda";
 import {ViewStream} from 'spyne';
 import {PageTraits} from '../../traits/page-traits';
+import {FilterTraits} from '../../traits/filter-traits';
 import {HomePageView} from '../page-home/home-page-view';
 
 export class PageHolderView extends ViewStream {
@@ -9,16 +10,22 @@ export class PageHolderView extends ViewStream {
   constructor(props = {}) {
     props.id='page-holder';
     props.tagName='section';
+    props.traits = [FilterTraits, PageTraits];
     super(props);
-    new PageTraits(this);
   }
 
   addActionListeners() {
     // return nexted array(s)
     return [
-      ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'onPageEvent'],
-          ['CHANNEL_STARTER_ROUTE_PROFILE_MENU_DEEPLINK_EVENT', 'onPageEvent']
+        ["CHANNEL_ROUTE_.*_EVENT", 'onChannelRouteEvt'],
+      ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'onPageEvent']
     ];
+  }
+
+  onChannelRouteEvt(e){
+
+    console.log("CHANNEL ROUTE IS ",e);
+
   }
 
 
@@ -41,6 +48,7 @@ export class PageHolderView extends ViewStream {
   afterRender() {
 
    this.addChannel("CHANNEL_STARTER_ROUTE");
+   this.addChannel("CHANNEL_ROUTE");
   }
 
 }

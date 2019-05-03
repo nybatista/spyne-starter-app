@@ -6,7 +6,7 @@ describe('filter trait tests', () => {
 
   it('header pageId filter should return true', () => {
     let payload = R.clone(homeChannelPayload);
-    let payloadFilter = FilterTraits.filter$PageIdFilter();
+    let payloadFilter = FilterTraits.filters$PageIdFilter();
     let filterReturned = payloadFilter(payload);
     expect(filterReturned).to.equal(true);
 
@@ -16,9 +16,22 @@ describe('filter trait tests', () => {
   it('header pageId filter should return true', () => {
     let payload = R.clone(homeChannelPayload);
     payload.routeData.pageId=undefined;
-    let payloadFilter = FilterTraits.filter$PageIdFilter();
+    let payloadFilter = FilterTraits.filters$PageIdFilter();
     let filterReturned = payloadFilter(payload);
     expect(filterReturned).to.equal(false);
   });
+
+
+  it('pageId change should return true ',()=>{
+    let payload = R.clone(homeChannelPayload);
+    payload.pathsChanged = ['profileId'];
+    let payloadFilter = FilterTraits.filters$PageChangeFilter();
+    console.log('filter returned ',payloadFilter(payload));
+
+    return true;
+
+  })
+
+
 
 });

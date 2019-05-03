@@ -10,12 +10,16 @@ export class FilterTraits extends SpyneTrait {
   }
 
   static filters$PageIdFilter(e){
-
    return new ChannelPayloadFilter('', {
       routeData:  (val)=>['home','profiles','about'].indexOf(val.pageId)>=0
     })
+  }
 
 
+  static filters$PageChangeFilter(e){
+    return new ChannelPayloadFilter('', {
+      pathsChanged: (arr)=>arr.indexOf('pageId')>=0
+    })
   }
 
 }
