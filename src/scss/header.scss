@@ -19,7 +19,7 @@
 
     a {
       color:#FFB89F;
-     // font-size:.9rem;
+      font-size:1.1rem;
       text-decoration: none;
       font-weight: 700;
       opacity:.9;
@@ -40,5 +40,20 @@
 
 
   }
+
+  @media(max-width: 1080px)  {
+      .header-content {
+        a {
+          font-size: 1.5rem;
+
+        }
+
+
+    }
+
+  }
+
+
+
 
 }

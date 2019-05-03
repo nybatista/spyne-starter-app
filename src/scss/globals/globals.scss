@@ -28,6 +28,10 @@ $taupe: #716E50;
   //margin-bottom: 0.625em;
   background: $blue;
   opacity: 1;
+  @media(max-width:1080px){
+    font-size:1.8rem;
+  }
+
   &:hover{
     opacity:.8;
   }
