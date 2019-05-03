@@ -11,28 +11,16 @@ export class ChannelAppData extends Channel {
     props.sendCachedPayload = true;
     super(name, props);
     new ProfileTraits(this);
-
   }
 
 
   onInitialDataLoaded(e){
     let {route, data} = e;
-
-    let {pathsChanged, pathInnermost, routeData, isDeepLink} = route.props();
-
-    console.log("DATA APP ",{pathsChanged, pathInnermost, routeData, isDeepLink, data})
-
     this.props.data = data;
-
-    //this.checkForEvent(routeData);
-
     this.routeChannel$.subscribe(this.onRouteEvent.bind(this));
-
-
   }
 
   onRouteEvent(e){
-
     let {routeData} = e.props();
     this.checkForEvent(routeData);
   }
@@ -55,16 +43,9 @@ export class ChannelAppData extends Channel {
         payload.menuData = clone(this.props.data);
         payload.profileItemData = this.profileTraits$GetProfileItemData(profileId, this.props.data);
       }
-
-
       this.sendChannelPayload(actionStr, payload);
 
     }
-
-    console.log("CHECK FOR EVENT ",{profileId,pageId,actionStr,payload,isProfileItem,isProfilePage})
-
-
-
 
   }
 
@@ -77,18 +58,12 @@ export class ChannelAppData extends Channel {
     this.observer$.subscribe(subscribeTest);
 
     this.fetchProfiles$ = this.getChannel('CHANNEL_PROFILES');
-    this.channelAppRouter$ = this.getChannel("CHANNEL_STARTER_ROUTE");
     this.routeChannel$ = this.getChannel("CHANNEL_ROUTE");
-
     const obs$ = zip(this.routeChannel$, this.fetchProfiles$)
     .pipe(
     map(([route, data])=>({route,data:data.payload}))
   )
         .subscribe(this.onInitialDataLoaded.bind(this));
-
-
-    console.log('attemping fork ',this);
-
 
   }
 
@@ -99,15 +74,5 @@ export class ChannelAppData extends Channel {
     ];
   }
 
-  onIncomingViewStreamInfo(obj) {
-    let data = obj.props();
-  }
-
-  onSendPayload(actionStr, payload = {}) {
-    const action = this.channelActions[actionStr];
-    const srcElement = {};
-    const event = undefined;
-    this.sendChannelPayload(action, payload, srcElement, event);
-  }
 
 }
