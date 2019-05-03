@@ -6,13 +6,20 @@
     width: 40px;
     top: 70px;
     left: 10px;
-    opacity: .2;
-    cursor:pointer;
-    pointer-events:all;
-
-    &:hover{
-      opacity:.3;
+    opacity: 0;
+    pointer-events: none;
+    &.reveal {
+      cursor: pointer;
+      transition: opacity .5s ease;
+      pointer-events: all;
+      opacity:.2;
+      &:hover{
+        opacity:.3;
+      }
     }
+
+
+
 
   }
 

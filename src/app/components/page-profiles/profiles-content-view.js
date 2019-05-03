@@ -18,13 +18,23 @@ export class ProfilesContentView extends ViewStream {
   addActionListeners() {
     // return nexted array(s)
     return [
+        ['CHANNEL_APP_DATA_PROFILE_EVENT', 'onShowMenuEvent'],
         ['CHANNEL_APP_DATA_PROFILE_ITEM_EVENT', 'onProfileItemEvent']
     ];
   }
 
+  onShowMenuEvent(e){
+    this.showBackBtn(false);
+  }
+
   onProfileItemEvent(e){
     let {profileItemData} = e.props();
+    this.showBackBtn();
     this.appendView(new ProfileItemView({data:profileItemData}), '.profile-item-holder');
+  }
+
+  showBackBtn(bool=true){
+    this.props.el$('#profile-back-btn').toggle('reveal', bool);
   }
 
 
