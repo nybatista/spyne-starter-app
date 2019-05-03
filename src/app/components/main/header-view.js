@@ -25,7 +25,6 @@ export class HeaderView extends ViewStream {
   }
 
   broadcastEvents() {
-    // return nexted array(s)
     return [
         ['a', 'click']
     ];

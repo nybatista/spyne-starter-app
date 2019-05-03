@@ -55,14 +55,24 @@
 
   }
 
+
+  article.profiles-content-holder{
+    position:relative;
+    .profile-item-holder{
+      position:absolute;
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+  }
   #profiles-menu {
 
-    position: sticky;
+    position: relative;
 
     //display: flex;
-    top: 100px;
+    top: 10px;
     width: 100vw;
-    height: 100vh;
     //flex-wrap: wrap;
     list-style-type: none;
     display: grid;

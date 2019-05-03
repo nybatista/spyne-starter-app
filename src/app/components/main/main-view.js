@@ -18,50 +18,15 @@ export class MainView extends ViewStream {
     ];
   }
 
-  onDataEvent(e){
-
-    console.log("data is ",e);
-  }
-
   broadcastEvents() {
     // return nexted array(s)
     return [];
   }
 
-  loadContent(){
-
-    this.appendView(new ViewStream({
-      tagName: 'h3',
-      data: 'HELLO WORLD! '
-
-    }));
-
-    const imgUrl = "//spynejs.org.s3.amazonaws.com/test2/animals_0005.jpg";
-
-    let img = new ViewStream({
-      tagName: 'img',
-      src: imgUrl,
-      width: 300
-
-    });
-
-
-    this.appendView(img);
-
-
-
-  }
-
 
   afterRender() {
-    //this.loadContent();
     this.appendView(new HeaderView());
     this.appendView(new PageHolderView());
-
-    this.addChannel("CHANNEL_APP_DATA");
-
-
-
   }
 
 }

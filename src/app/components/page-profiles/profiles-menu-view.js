@@ -40,7 +40,7 @@ export class ProfilesMenuView extends ViewStream {
   }
 
   hideMenu(){
-    this.props.el$.inline='display:none';
+   this.props.el$.inline='display:none';
   }
 
 
