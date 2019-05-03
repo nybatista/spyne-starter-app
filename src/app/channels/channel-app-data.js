@@ -57,7 +57,7 @@ export class ChannelAppData extends Channel {
 
     this.observer$.subscribe(subscribeTest);
 
-    this.fetchProfiles$ = this.getChannel('CHANNEL_PROFILES');
+    this.fetchProfiles$ = this.getChannel('CHANNEL_USERS');
     this.routeChannel$ = this.getChannel("CHANNEL_ROUTE");
     const obs$ = zip(this.routeChannel$, this.fetchProfiles$)
     .pipe(

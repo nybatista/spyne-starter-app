@@ -1,7 +1,7 @@
 import {Channel, ChannelPayload} from 'spyne';
 import {RouteTrait} from '../traits/route-traits';
 
-export class ChannelStarterRoute extends Channel {
+export class ChannelAppRoute extends Channel {
 
   constructor(name, props = {}) {
     name = "CHANNEL_STARTER_ROUTE";

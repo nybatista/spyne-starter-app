@@ -1,7 +1,7 @@
 import {css} from "./scss/main.scss";
 import {SpyneApp, ViewStream, ChannelFetch} from 'spyne';
 import {MainView} from './app/components/main/main-view';
-import {ChannelStarterRoute} from './app/channels/channel-starter-route';
+import {ChannelAppRoute} from './app/channels/channel-app-route';
 import {ProfileTraits} from './app/traits/profile-trait';
 import {ChannelAppData} from './app/channels/channel-app-data';
 
@@ -60,5 +60,5 @@ let randUserData = {
 };
 spyneApp.registerChannel(new ChannelAppData());
 
-spyneApp.registerChannel(new ChannelStarterRoute());
-spyneApp.registerChannel(new ChannelFetch("CHANNEL_PROFILES", randUserData))
+spyneApp.registerChannel(new ChannelAppRoute());
+spyneApp.registerChannel(new ChannelFetch("CHANNEL_USERS", randUserData))
