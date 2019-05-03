@@ -22,7 +22,7 @@ export class RouteTrait extends SpyneTrait {
     if (changedParam !== 'pageId'){
       return {action,payload};
     } else {
-      action = "CHANNEL_STARTER_ROUTE_PAGE_EVENT";
+      action = "CHANNEL_PAGE_ROUTE_EVENT";
       payload = routeData;
     }
 

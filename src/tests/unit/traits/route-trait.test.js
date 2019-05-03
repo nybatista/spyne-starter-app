@@ -6,13 +6,13 @@ describe('RouteTrait methods', ()=>{
   it('should return page event', ()=>{
     let {pathsChanged, routeData} = homeChannelPayload.payload;
     let {action} = RouteTrait.routeTrait$ParseRouteData(pathsChanged, routeData);
-    expect(action).to.equal("CHANNEL_STARTER_ROUTE_PAGE_EVENT");
+    expect(action).to.equal("CHANNEL_PAGE_ROUTE_EVENT");
   });
   it('should return profile event', ()=>{
     let {pathsChanged, routeData} = homeChannelPayload.payload;
     pathsChanged=['profileId'];
     let {action} = RouteTrait.routeTrait$ParseRouteData(pathsChanged, routeData);
-    expect(action).to.equal("CHANNEL_STARTER_ROUTE_PROFILE_EVENT");
+    expect(action).to.equal("CHANNEL_PAGE_ROUTE_PROFILE_EVENT");
   });
 
 

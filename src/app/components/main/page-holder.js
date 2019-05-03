@@ -17,7 +17,7 @@ export class PageHolderView extends ViewStream {
   addActionListeners() {
     // return nexted array(s)
     return [
-      ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'onPageEvent']
+      ['CHANNEL_PAGE_ROUTE_EVENT', 'onPageEvent']
     ];
   }
 
@@ -35,7 +35,7 @@ export class PageHolderView extends ViewStream {
 
   afterRender() {
 
-   this.addChannel("CHANNEL_STARTER_ROUTE");
+   this.addChannel("CHANNEL_PAGE_ROUTE");
    this.addChannel("CHANNEL_ROUTE");
   }
 

@@ -1,10 +1,10 @@
 import {Channel, ChannelPayload} from 'spyne';
 import {RouteTrait} from '../traits/route-traits';
 
-export class ChannelAppRoute extends Channel {
+export class ChannelPageRoute extends Channel {
 
   constructor(name, props = {}) {
-    name = "CHANNEL_STARTER_ROUTE";
+    name = "CHANNEL_PAGE_ROUTE";
     props.sendCachedPayload = false;
     super(name, props);
     new RouteTrait(this);
@@ -26,7 +26,7 @@ export class ChannelAppRoute extends Channel {
 
   addRegisteredActions() {
     return [
-      "CHANNEL_STARTER_ROUTE_PAGE_EVENT"
+      "CHANNEL_PAGE_ROUTE_EVENT"
     ];
   }
 
