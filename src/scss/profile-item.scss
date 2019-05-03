@@ -10,11 +10,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 7rem 7rem 7rem;
+    padding: 4rem 7rem 7rem 7rem;
     color: antiquewhite;
 
 
-
+    min-width: 80vw;
+    min-height: 80vh;
 
     opacity:0;
     transition: opacity .5s ease .75s;
@@ -44,7 +45,7 @@
       flex-direction: column;;
       align-items: center;
       width: 250px;
-      margin-left: 1rem;
+      //margin-left: 1rem;
 
 
       div.avatar {

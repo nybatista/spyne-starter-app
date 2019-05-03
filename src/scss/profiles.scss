@@ -2,10 +2,12 @@
 
 
   #profile-back-btn{
-    position:fixed;
-    width: 40px;
-    top: 70px;
+    position: absolute;
+    width: 5vw;
+    top: 2.2rem;
+    max-width: 40px;
     left: 10px;
+
     opacity: 0;
     pointer-events: none;
     &.reveal {
@@ -122,7 +124,7 @@
       height: 385px;
       background: $beigeLight;
       // margin: 10px;
-      padding: 20px;
+      padding: 3.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -163,7 +165,7 @@
 
     }
 
-    @media(max-width: 1080px) {
+    @media(max-width: 1080px) and (orientation: portrait) {
       grid-template-columns: repeat(auto-fill, 90%);
       li {
         width: 94%;

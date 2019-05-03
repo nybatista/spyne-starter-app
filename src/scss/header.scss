@@ -1,6 +1,7 @@
 #header-view{
   position:fixed;
-  height:50px;
+  min-height:50px;
+  height:5vh;
   width:100%;
   color:#fff;
   background: $slate;
