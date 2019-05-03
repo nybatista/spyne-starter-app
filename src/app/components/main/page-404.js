@@ -8,15 +8,15 @@ export class Page404 extends ViewStream {
   constructor(props = {}) {
     props.class='page page-404';
     props.template=require('./templates/404.tmpl.html');
+    props.traits = PageTraits;
     super(props);
-    new PageTraits(this);
 
   }
 
   addActionListeners() {
     // return nexted array(s)
     return [
-      ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'disposeViewStream']
+      this.pageTrait$OnPageChangeBindToDispose()
 
     ];
   }

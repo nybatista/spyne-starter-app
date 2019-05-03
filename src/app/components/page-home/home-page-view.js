@@ -7,17 +7,18 @@ export class HomePageView extends ViewStream {
     props.tagName = 'article';
     props.id='page-home-page';
     props.class='page';
+    props.traits = PageTraits;
     props.template = require('./templates/home.tmpl.html');
     super(props);
     this.props.pageId='home';
-    new PageTraits(this);
   }
 
   addActionListeners() {
     // return nexted array(s)
     return [
-        ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'disposeViewStream']
+      this.pageTrait$OnPageChangeBindToDispose()
     ];
+
   }
 
   broadcastEvents() {

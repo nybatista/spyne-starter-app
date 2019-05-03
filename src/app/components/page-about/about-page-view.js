@@ -8,14 +8,14 @@ export class AboutPageView extends ViewStream {
     props.id='page-about-page';
     props.class='page';
     props.template = require('./templates/about.tmpl.html');
+    props.traits = [PageTraits];
     super(props);
-    new PageTraits(this);
   }
 
   addActionListeners() {
     // return nexted array(s)
     return [
-      ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'disposeViewStream']
+      this.pageTrait$OnPageChangeBindToDispose()
     ];
   }
 
