@@ -1,6 +1,6 @@
 import {SpyneTrait} from 'spyne';
 const R = require('ramda');
-import {compose, map, range,reduce} from 'ramda';
+import {map, range} from 'ramda';
 
 export class ProfileTraits extends SpyneTrait {
 
@@ -61,8 +61,6 @@ export class ProfileTraits extends SpyneTrait {
         profile.avatar = animatAvatarLinks.shift();
         return profile;
       };
-
-      //const lensPic = lensPath(['picture', 'large']);
 
         return map(mapProfiles, response.users);
   }
@@ -1059,11 +1057,6 @@ export class ProfileTraits extends SpyneTrait {
 
 
   }
-
-
-
-
-
 
 
 }

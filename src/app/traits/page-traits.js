@@ -34,10 +34,7 @@ export class PageTraits extends SpyneTrait {
   }
 
   static pageTrait$OnPageChangeBindToDispose(){
-
-
     return  ['CHANNEL_STARTER_ROUTE_PAGE_EVENT', 'disposeViewStream'];
-
   }
 
 

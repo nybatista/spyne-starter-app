@@ -22,7 +22,6 @@ export class ProfilesContentView extends ViewStream {
     ];
   }
 
-
   onProfileItemEvent(e){
     let {profileItemData} = e.props();
     this.appendView(new ProfileItemView({data:profileItemData}), '.profile-item-holder');

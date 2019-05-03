@@ -22,17 +22,13 @@ export class ProfilesMenuView extends ViewStream {
     ];
   }
 
-
-
   slideIn(e){
     this.props.el$.removeClass('hide');
     this.props.el$.inline='';
-
   }
 
   slideOut(e){
     this.props.el$.addClass('hide');
-
   }
 
   onAnimationEnd(e){
@@ -42,8 +38,6 @@ export class ProfilesMenuView extends ViewStream {
   hideMenu(){
    this.props.el$.inline='display:none';
   }
-
-
 
   broadcastEvents() {
     // return nexted array(s)
@@ -61,7 +55,6 @@ export class ProfilesMenuView extends ViewStream {
 
   afterRender() {
     this.hideMenu();
-
     this.addChannel("CHANNEL_APP_DATA");
     this.addChannel("CHANNEL_PROFILES");
     this.addChannel('CHANNEL_UI');

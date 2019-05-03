@@ -3,15 +3,12 @@
 import {ViewStream} from 'spyne';
 
 export class ProfilesMenuItemView extends ViewStream {
-
   constructor(props = {}) {
     props.tagName = 'li';
-
     props.dataset = {
       channel: "ROUTE",
       profileId: props.data.profileId
     };
-
     props.template = require('./templates/profiles-menu-item.tmpl.html');
     super(props);
 

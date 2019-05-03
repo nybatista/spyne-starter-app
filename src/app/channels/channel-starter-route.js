@@ -1,5 +1,3 @@
-import {Subject} from 'rxjs/index';
-import {filter} from 'rxjs/operators/index';
 import {Channel, ChannelPayload} from 'spyne';
 import {RouteTrait} from '../traits/route-traits';
 
@@ -14,7 +12,7 @@ export class ChannelStarterRoute extends Channel {
   }
 
   onRouteChange(e){
-    let {pathsChanged, pathInnermost, routeData, isDeepLink} = e.props();
+    let {pathsChanged, routeData, isDeepLink} = e.props();
     let {action, payload} = this.routeTrait$ParseRouteData(pathsChanged, routeData, isDeepLink);
     if (action!==undefined) {
       this.sendChannelPayload(action, payload);
@@ -28,22 +26,9 @@ export class ChannelStarterRoute extends Channel {
 
   addRegisteredActions() {
     return [
-      "CHANNEL_STARTER_ROUTE_PAGE_EVENT",
-      "CHANNEL_STARTER_ROUTE_PROFILE_MENU_EVENT",
-        "CHANNEL_STARTER_ROUTE_PROFILE_MENU_DEEPLINK_EVENT",
-      "CHANNEL_STARTER_ROUTE_PROFILE_EVENT"
+      "CHANNEL_STARTER_ROUTE_PAGE_EVENT"
     ];
   }
 
-  onIncomingViewStreamInfo(obj) {
-    let data = obj.props();
-  }
-
-  onSendPayload(actionStr, payload = {}) {
-    const action = this.channelActions[actionStr];
-    const srcElement = {};
-    const event = undefined;
-    this.sendChannelPayload(action, payload, srcElement, event);
-  }
 
 }
