@@ -18,8 +18,8 @@ export class ProfilesContentView extends ViewStream {
   addActionListeners() {
     // return nexted array(s)
     return [
-        ['CHANNEL_APP_DATA_PROFILE_EVENT', 'onShowMenuEvent'],
-        ['CHANNEL_APP_DATA_PROFILE_ITEM_EVENT', 'onProfileItemEvent']
+        ['CHANNEL_PROFILES_MENU_EVENT', 'onShowMenuEvent'],
+        ['CHANNEL_PROFILES_ITEM_EVENT', 'onProfileItemEvent']
     ];
   }
 
@@ -46,7 +46,7 @@ export class ProfilesContentView extends ViewStream {
 
   afterRender() {
     this.appendView(new ProfilesMenuView(), '.profiles-menu-holder');
-    this.addChannel("CHANNEL_APP_DATA");
+    this.addChannel("CHANNEL_PROFILES");
   }
 
 }

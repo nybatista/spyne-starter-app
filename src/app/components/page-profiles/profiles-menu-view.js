@@ -17,8 +17,8 @@ export class ProfilesMenuView extends ViewStream {
     return [
       ['CHANNEL_UI_ANIMATIONEND_EVENT', 'onAnimationEnd', '#profiles-menu'],
       ['CHANNEL_USERS_DATA_EVENT', 'onMenuDataEvent'],
-      ['CHANNEL_APP_DATA_PROFILE_EVENT', 'slideIn'],
-      ['CHANNEL_APP_DATA_PROFILE_ITEM_EVENT', 'slideOut']
+      ['CHANNEL_PROFILES_MENU_EVENT', 'slideIn'],
+      ['CHANNEL_PROFILES_ITEM_EVENT', 'slideOut']
     ];
   }
 
@@ -55,7 +55,7 @@ export class ProfilesMenuView extends ViewStream {
 
   afterRender() {
     this.hideMenu();
-    this.addChannel("CHANNEL_APP_DATA");
+    this.addChannel("CHANNEL_PROFILES");
     this.addChannel("CHANNEL_USERS");
     this.addChannel('CHANNEL_UI');
   }

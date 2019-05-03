@@ -16,7 +16,7 @@ export class ProfileItemView extends ViewStream {
   addActionListeners() {
     // return nexted array(s)
     return [
-        ['CHANNEL_APP_DATA_PROFILE_EVENT', 'disposeViewStream']
+        ['CHANNEL_PROFILES_MENU_EVENT', 'disposeViewStream']
     ];
   }
 
@@ -32,7 +32,7 @@ export class ProfileItemView extends ViewStream {
   afterRender() {
 
 
-    this.addChannel('CHANNEL_APP_DATA');
+    this.addChannel('CHANNEL_PROFILES');
 
 
    this.props.el$.addAnimClass('reveal');

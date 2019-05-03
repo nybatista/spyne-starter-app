@@ -4,10 +4,10 @@ import {Channel, ChannelPayload} from 'spyne';
 import {propEq,is,clone} from 'ramda';
 import {ProfileTraits} from '../traits/profile-trait';
 
-export class ChannelAppData extends Channel {
+export class ChannelProfiles extends Channel {
 
   constructor(name, props = {}) {
-    name = 'CHANNEL_APP_DATA';
+    name = 'CHANNEL_PROFILES';
     props.sendCachedPayload = true;
     super(name, props);
     new ProfileTraits(this);
@@ -34,11 +34,11 @@ export class ChannelAppData extends Channel {
     let isProfileItem = profileId !== undefined && profileId !=="";;
 
     if (isProfilePage === true){
-      actionStr = "CHANNEL_APP_DATA_PROFILE_EVENT";
+      actionStr = "CHANNEL_PROFILES_MENU_EVENT";
       payload = clone(this.props.data);
       if (isProfileItem === true){
         profileId = decodeURI(profileId);
-        actionStr = "CHANNEL_APP_DATA_PROFILE_ITEM_EVENT";
+        actionStr = "CHANNEL_PROFILES_ITEM_EVENT";
         payload = {};
         payload.menuData = clone(this.props.data);
         payload.profileItemData = this.profileTraits$GetProfileItemData(profileId, this.props.data);
@@ -51,11 +51,10 @@ export class ChannelAppData extends Channel {
 
   onChannelInitialized() {
     const subscribeTest = (e)=>{
-      console.log('channel app data test subscribe ',e);
+      console.log('channel profiles test subscribe ',e);
+    };
 
-    }
-
-    this.observer$.subscribe(subscribeTest);
+    //this.observer$.subscribe(subscribeTest);
 
     this.fetchProfiles$ = this.getChannel('CHANNEL_USERS');
     this.routeChannel$ = this.getChannel("CHANNEL_ROUTE");
@@ -69,8 +68,8 @@ export class ChannelAppData extends Channel {
 
   addRegisteredActions() {
     return [
-      'CHANNEL_APP_DATA_PROFILE_EVENT',
-      'CHANNEL_APP_DATA_PROFILE_ITEM_EVENT'
+      'CHANNEL_PROFILES_MENU_EVENT',
+      'CHANNEL_PROFILES_ITEM_EVENT'
     ];
   }
 
