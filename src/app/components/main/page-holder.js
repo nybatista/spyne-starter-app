@@ -31,7 +31,6 @@ export class PageHolderView extends ViewStream {
 
   afterRender() {
    this.addChannel("CHANNEL_PAGE_ROUTE");
-   this.addChannel("CHANNEL_ROUTE");
   }
 
 }
