@@ -1,5 +1,3 @@
-// import Rx from "rxjs";
-// import * as R from "ramda";
 import {ViewStream} from 'spyne';
 import {ProfilesMenuView} from './profiles-menu-view';
 import {ProfileItemView} from './profile-item-view';
@@ -16,7 +14,6 @@ export class ProfilesContentView extends ViewStream {
   }
 
   addActionListeners() {
-    // return nexted array(s)
     return [
         ['CHANNEL_PROFILES_MENU_EVENT', 'onShowMenuEvent'],
         ['CHANNEL_PROFILES_ITEM_EVENT', 'onProfileItemEvent']

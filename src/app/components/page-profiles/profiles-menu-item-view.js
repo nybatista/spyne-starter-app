@@ -1,5 +1,3 @@
-// import Rx from "rxjs";
-// import * as R from "ramda";
 import {ViewStream} from 'spyne';
 
 export class ProfilesMenuItemView extends ViewStream {

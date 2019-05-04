@@ -9,7 +9,6 @@ export class PageTraits extends SpyneTrait {
   constructor(context) {
     let traitPrefix = "pageTrait$";
     super(context, traitPrefix);
-
   }
 
   static pageTrait$GetPageClass(pageId='home'){
@@ -19,31 +18,16 @@ export class PageTraits extends SpyneTrait {
       'about' :  AboutPageView,
       '404' : Page404
     };
-
     return classHashObj[pageId];
-
-  }
-
-
-  static pageTrait$CheckToDispose(e){
-    let {pageId} = e.props();
-    if (pageId!==this.props.pageId){
-      this.disposeViewStream();
-    }
-
   }
 
   static pageTrait$OnPageChangeBindToDispose(){
     return  ['CHANNEL_PAGE_ROUTE_EVENT', 'disposeViewStream'];
   }
 
-
   static pageTrait$InitPage(){
     this.addChannel("CHANNEL_PAGE_ROUTE");
 
   }
 
-  static pageTrait$TestMethod(){
-    console.log('testing method ',this);
-  }
 }

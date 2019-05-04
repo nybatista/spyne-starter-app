@@ -13,14 +13,12 @@ export class AboutPageView extends ViewStream {
   }
 
   addActionListeners() {
-    // return nexted array(s)
     return [
       this.pageTrait$OnPageChangeBindToDispose()
     ];
   }
 
   broadcastEvents() {
-    // return nexted array(s)
     return [];
   }
 

@@ -1,6 +1,4 @@
-// import Rx from "rxjs";
-// import * as R from "ramda";
-import {ChannelPayloadFilter, ViewStream} from 'spyne';
+import {ViewStream} from 'spyne';
 import {FilterTraits} from '../../traits/filter-traits';
 
 export class HeaderView extends ViewStream {

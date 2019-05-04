@@ -1,5 +1,3 @@
-// import Rx from "rxjs";
-// import * as R from "ramda";
 import {ViewStream} from 'spyne';
 
 export class ProfileItemView extends ViewStream {
@@ -10,31 +8,20 @@ export class ProfileItemView extends ViewStream {
     props.animInClass = 'reveal';
     props.template=require('./templates/profile-item.tmpl.html');
     super(props);
-
   }
 
   addActionListeners() {
-    // return nexted array(s)
     return [
         ['CHANNEL_PROFILES_MENU_EVENT', 'disposeViewStream']
     ];
   }
 
-  onRouteEvent(){
-    console.log('item route event ');
-  }
-
   broadcastEvents() {
-    // return nexted array(s)
     return [];
   }
 
   afterRender() {
-
-
     this.addChannel('CHANNEL_PROFILES');
-
-
    this.props.el$.addAnimClass('reveal');
   }
 

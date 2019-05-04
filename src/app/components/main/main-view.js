@@ -1,6 +1,5 @@
 import {ViewStream} from 'spyne';
 import {HeaderView} from './header-view';
-import {HomePageView} from '../page-home/home-page-view';
 import {PageHolderView} from './page-holder';
 
 export class MainView extends ViewStream {
@@ -13,14 +12,15 @@ export class MainView extends ViewStream {
   }
 
   addActionListeners() {
-    // return nexted array(s)
     return [
+
     ];
   }
 
   broadcastEvents() {
-    // return nexted array(s)
-    return [];
+    return [
+
+    ];
   }
 
 

@@ -1,9 +1,10 @@
 import {css} from "./scss/main.scss";
-import {SpyneApp, ViewStream, ChannelFetch} from 'spyne';
+import {SpyneApp, ChannelFetch} from 'spyne';
 import {MainView} from './app/components/main/main-view';
+import {ChannelProfiles} from './app/channels/channel-profiles';
 import {ChannelPageRoute} from './app/channels/channel-page-route';
 import {ProfileTraits} from './app/traits/profile-trait';
-import {ChannelProfiles} from './app/channels/channel-profiles';
+
 
 const spyneApp = new SpyneApp({
   debug:true,
@@ -11,7 +12,6 @@ const spyneApp = new SpyneApp({
     ROUTE: {
       type: "slash",
       routes: {
-
         routePath: {
           routeName: 'pageId',
           home: '^$|index.html',
@@ -31,11 +31,10 @@ const spyneApp = new SpyneApp({
 const app = new MainView();
 app.appendToDom(document.body);
 
-let userData = {
+let channelFetchProps = {
   url: "//assetscontainer.com/starter-app/random-users.json",
   mapFn: ProfileTraits.profileTraits$mapProfiles
 };
+spyneApp.registerChannel(new ChannelFetch("CHANNEL_USERS", channelFetchProps));
 spyneApp.registerChannel(new ChannelProfiles());
-
 spyneApp.registerChannel(new ChannelPageRoute());
-spyneApp.registerChannel(new ChannelFetch("CHANNEL_USERS", userData));

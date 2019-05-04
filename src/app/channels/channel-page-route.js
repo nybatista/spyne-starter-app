@@ -1,5 +1,7 @@
-import {Channel, ChannelPayload} from 'spyne';
-import {RouteTrait} from '../traits/route-traits';
+import {Channel, ChannelPayloadFilter} from 'spyne';
+import {filter} from "rxjs/operators";
+import {FilterTraits} from '../traits/filter-traits';
+
 
 export class ChannelPageRoute extends Channel {
 
@@ -7,21 +9,21 @@ export class ChannelPageRoute extends Channel {
     name = "CHANNEL_PAGE_ROUTE";
     props.sendCachedPayload = false;
     super(name, props);
-    new RouteTrait(this);
+    new FilterTraits(this);
 
   }
 
   onRouteChange(e){
-    let {pathsChanged, routeData, isDeepLink} = e.props();
-    let {action, payload} = this.routeTrait$ParseRouteData(pathsChanged, routeData, isDeepLink);
-    if (action!==undefined) {
-      this.sendChannelPayload(action, payload);
-    }
+    let {routeData,} = e.props();
+    const action = "CHANNEL_PAGE_ROUTE_EVENT";
+    this.sendChannelPayload(action ,routeData);
   }
 
   onChannelInitialized() {
+    const pagePayloadFilter = this.filters$PageChangeFilter();
     this.getChannel('CHANNEL_ROUTE')
-        .subscribe(this.onRouteChange.bind(this));
+    .pipe(filter(pagePayloadFilter))
+    .subscribe(this.onRouteChange.bind(this));
   }
 
   addRegisteredActions() {

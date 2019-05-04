@@ -1,9 +1,6 @@
-// import Rx from "rxjs";
-// import * as R from "ramda";
 import {ViewStream} from 'spyne';
 import {PageTraits} from '../../traits/page-traits';
 import {FilterTraits} from '../../traits/filter-traits';
-import {HomePageView} from '../page-home/home-page-view';
 
 export class PageHolderView extends ViewStream {
 
@@ -15,12 +12,10 @@ export class PageHolderView extends ViewStream {
   }
 
   addActionListeners() {
-    // return nexted array(s)
     return [
       ['CHANNEL_PAGE_ROUTE_EVENT', 'onPageEvent']
     ];
   }
-
 
   onPageEvent(e){
     let {pageId} = e.props();
@@ -29,12 +24,12 @@ export class PageHolderView extends ViewStream {
   }
 
   broadcastEvents() {
-    // return nexted array(s)
-    return [];
+    return [
+
+    ];
   }
 
   afterRender() {
-
    this.addChannel("CHANNEL_PAGE_ROUTE");
    this.addChannel("CHANNEL_ROUTE");
   }

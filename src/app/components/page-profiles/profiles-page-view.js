@@ -1,8 +1,6 @@
 import {ViewStream} from 'spyne';
 import {PageTraits} from '../../traits/page-traits';
 import {ProfilesContentView} from './profiles-content-view';
-import {ProfileTraits} from '../../traits/profile-trait';
-import {ProfileItemView} from './profile-item-view';
 
 export class ProfilesPageView extends ViewStream {
 
@@ -10,12 +8,11 @@ export class ProfilesPageView extends ViewStream {
     props.tagName = 'article';
     props.id='page-profiles';
     props.class='page';
-    props.traits = [PageTraits, ProfileTraits];
+    props.traits = [PageTraits];
     super(props);
   }
 
   addActionListeners() {
-    // return nexted array(s)
     return [
       this.pageTrait$OnPageChangeBindToDispose()
     ];

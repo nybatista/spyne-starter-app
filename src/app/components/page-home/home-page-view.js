@@ -14,7 +14,6 @@ export class HomePageView extends ViewStream {
   }
 
   addActionListeners() {
-    // return nexted array(s)
     return [
       this.pageTrait$OnPageChangeBindToDispose()
     ];
@@ -22,7 +21,6 @@ export class HomePageView extends ViewStream {
   }
 
   broadcastEvents() {
-    // return nexted array(s)
     return [
         ['.btn', 'click']
     ];

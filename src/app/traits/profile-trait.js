@@ -1,6 +1,5 @@
 import {SpyneTrait} from 'spyne';
-const R = require('ramda');
-import {map, range} from 'ramda';
+import {map, range, curry, filter, propEq, prop, compose, head} from 'ramda';
 
 export class ProfileTraits extends SpyneTrait {
 
@@ -10,7 +9,7 @@ export class ProfileTraits extends SpyneTrait {
 
   }
   static profileTraits$CreateRandomArr(n=1){
-    const shuffler = R.curry(function(random, list) {
+    const shuffler = curry(function(random, list) {
           let idx = -1;
           let len = list.length;
           let position;
@@ -66,8 +65,8 @@ export class ProfileTraits extends SpyneTrait {
   }
 
   static profileTraits$GetProfileItemData(profileId, data){
-    const filterByProfileId = R.filter(R.propEq('profileId', profileId));
-    return  R.compose(R.head, filterByProfileId)(data);
+    const filterByProfileId = filter(propEq('profileId', profileId));
+    return  compose(head, filterByProfileId)(data);
 
   }
 
@@ -1052,10 +1051,8 @@ export class ProfileTraits extends SpyneTrait {
       }
     ];
 
-      const filterCountry = R.filter(R.propEq('code', str));
-     return  R.compose(R.prop('name'), R.head, filterCountry)(countries);
-
-
+      const filterCountry = filter(propEq('code', str));
+     return  compose(prop('name'), head, filterCountry)(countries);
   }
 
 

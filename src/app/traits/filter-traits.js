@@ -1,12 +1,10 @@
 import {SpyneTrait, ChannelPayloadFilter} from 'spyne';
-import {propEq} from 'ramda';
 
 export class FilterTraits extends SpyneTrait {
 
   constructor(context) {
     let traitPrefix = 'filters$';
     super(context, traitPrefix);
-
   }
 
   static filters$PageIdFilter(e){
