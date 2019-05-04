@@ -30,9 +30,11 @@ export class ChannelProfiles extends Channel {
 
     let data = {};
     if (isProfileItemEvent === true){
+      // some names have special characters
+      profileId = decodeURI(profileId);
+
       data = this.profileTraits$GetProfileItemData(profileId, this.props.data);
     }
-
     this.sendChannelPayload(action, data);
   }
 
