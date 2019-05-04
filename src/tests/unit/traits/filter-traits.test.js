@@ -26,12 +26,51 @@ describe('filter trait tests', () => {
     let payload = R.clone(homeChannelPayload);
     payload.pathsChanged = ['profileId'];
     let payloadFilter = FilterTraits.filters$PageChangeFilter();
-    console.log('filter returned ',payloadFilter(payload));
 
     return true;
 
-  })
+  });
 
+it('returns true, pageId returns true and profileId is empty', ()=>{
+    let payload = R.clone(homeChannelPayload);
+    payload.routeData.pageId = 'profiles';
+    payload.routeData.profileId = "";
+
+  let payloadFilter = FilterTraits.filters$ProfileEventFilter();
+    let filterReturned = payloadFilter(payload);
+
+  expect(filterReturned).to.equal(true);
+
+
+});
+
+  it('returns true, pageId returns true and profileId is undefined', ()=>{
+    let payload = R.clone(homeChannelPayload);
+    payload.routeData.pageId = 'profiles';
+    let payloadFilter = FilterTraits.filters$ProfileEventFilter();
+    let filterReturned = payloadFilter(payload);
+    expect(filterReturned).to.equal(true);
+  });
+
+  it('returns true, pageId returns true and profileId is defined', ()=>{
+    let payload = R.clone(homeChannelPayload);
+    payload.routeData.pageId = 'profiles';
+    payload.routeData.profileId = "b0";
+    let payloadFilter = FilterTraits.filters$ProfileEventFilter();
+    let filterReturned = payloadFilter(payload);
+    expect(filterReturned).to.equal(true);
+
+  });
+
+  it('returns false, pageId returns false and profileId is defined', ()=>{
+    let payload = R.clone(homeChannelPayload);
+    payload.routeData.pageId = 'home';
+    payload.routeData.profileId = "b0";
+    let payloadFilter = FilterTraits.filters$ProfileEventFilter();
+    let filterReturned = payloadFilter(payload);
+    expect(filterReturned).to.equal(false);
+
+  });
 
 
 });

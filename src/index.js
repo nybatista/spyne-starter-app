@@ -4,7 +4,7 @@ import {MainView} from './app/components/main/main-view';
 import {ChannelProfiles} from './app/channels/channel-profiles';
 import {ChannelPageRoute} from './app/channels/channel-page-route';
 import {ProfileTraits} from './app/traits/profile-trait';
-
+window.R = require('ramda');
 
 const spyneApp = new SpyneApp({
   debug:true,

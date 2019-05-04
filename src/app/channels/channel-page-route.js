@@ -8,9 +8,8 @@ export class ChannelPageRoute extends Channel {
   constructor(name, props = {}) {
     name = "CHANNEL_PAGE_ROUTE";
     props.sendCachedPayload = false;
+    props.traits = FilterTraits;
     super(name, props);
-    new FilterTraits(this);
-
   }
 
   onRouteChange(e){

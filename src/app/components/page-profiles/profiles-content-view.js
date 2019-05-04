@@ -25,15 +25,13 @@ export class ProfilesContentView extends ViewStream {
   }
 
   onProfileItemEvent(e){
-    let {profileItemData} = e.props();
     this.showBackBtn();
-    this.appendView(new ProfileItemView({data:profileItemData}), '.profile-item-holder');
+    this.appendView(new ProfileItemView({data:e.payload}), '.profile-item-holder');
   }
 
   showBackBtn(bool=true){
     this.props.el$('#profile-back-btn').toggle('reveal', bool);
   }
-
 
   broadcastEvents() {
     return [
