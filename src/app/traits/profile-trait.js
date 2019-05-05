@@ -67,10 +67,9 @@ export class ProfileTraits extends SpyneTrait {
     let animatAvatarLinks = ProfileTraits.profileTraits$CreateAnimalAvatarsArr();
     let usersArr = ProfileTraits.profileTraits$generateRandomUsers(response.users);
 
-      console.log('response is ',response);
-
-    const mapProfiles = (profile)=>{
+    const mapProfiles = (profile, i)=>{
         profile.photo = profile.picture.large;
+        profile.profileNum = i*1+1;
         profile.fullName = `${profile.name.first} ${profile.name.last}`;
         profile.userName = profile.login.username;
         profile.dob.date = new Date(profile.dob.date).toDateString();
@@ -81,7 +80,7 @@ export class ProfileTraits extends SpyneTrait {
         return profile;
       };
 
-        return map(mapProfiles, usersArr);
+        return usersArr.map(mapProfiles);
   }
 
   static profileTraits$GetProfileItemData(profileId, data){
@@ -99,8 +98,9 @@ export class ProfileTraits extends SpyneTrait {
 
     const action  = isProfileItemEvent === false ? "CHANNEL_PROFILES_MENU_EVENT" : "CHANNEL_PROFILES_ITEM_EVENT";
     let payload = isProfileItemEvent === false ? {} : ProfileTraits.profileTraits$GetProfileItemData(profileId, data);
-    console.log('payload is ',payload);
-    payload = payload!== undefined ? payload : ProfileTraits.profileTraits$GetUser404();
+    if (payload === undefined) {
+      payload = ProfileTraits.profileTraits$GetUser404();
+    }
     payload = clone(payload);
     return {action, payload};
   }

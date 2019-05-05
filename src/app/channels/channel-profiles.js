@@ -15,6 +15,7 @@ export class ChannelProfiles extends Channel {
   onInitialDataLoaded(e){
     this.props.data = e.payload;
 
+
     const routePayloadFilter = this.filters$ProfileEventFilter();
     this.routeChannel$
     .pipe(filter(routePayloadFilter))
@@ -25,7 +26,9 @@ export class ChannelProfiles extends Channel {
     let {profileId} = e.props().routeData;
     let {action, payload} = this.profileTraits$GetChannelPayload(profileId, this.props.data);
     this.sendChannelPayload(action, payload);
+
   }
+
 
   onChannelInitialized() {
     this.routeChannel$ = this.getChannel("CHANNEL_ROUTE");
