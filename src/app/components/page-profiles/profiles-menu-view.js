@@ -29,7 +29,7 @@ export class ProfilesMenuView extends ViewStream {
     this.props.el$.removeClass('hide');
     this.props.el$.inline='';
 
-    console.log("SLIDE IN ",this.props.scrollY);
+    console.log("SLIDE IN ",this.props.scrollY, e);
     if (this.props.scrollY!==undefined){
       this.scrollWindowY(this.props.scrollY);
       //this.props.scrollY=undefined;

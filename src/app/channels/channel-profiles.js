@@ -15,6 +15,8 @@ export class ChannelProfiles extends Channel {
   onInitialDataLoaded(e){
     this.props.data = e.payload;
 
+    this.props.scrollRecorder = this.getScrollYRecorder();
+
 
     const routePayloadFilter = this.filters$ProfileEventFilter();
     this.routeChannel$
@@ -24,7 +26,11 @@ export class ChannelProfiles extends Channel {
 
   onProfilesRouteEvent(e){
     let {profileId} = e.props().routeData;
+    let {routeCount} = e.props();
     let {action, payload} = this.profileTraits$GetChannelPayload(profileId, this.props.data);
+
+    console.log('scroll record ',routeCount);
+    payload.scrollY = this.props.scrollRecorder.getScrollNum(routeCount)
     this.sendChannelPayload(action, payload);
 
   }
@@ -37,6 +43,43 @@ export class ChannelProfiles extends Channel {
       .subscribe(this.onInitialDataLoaded.bind(this));
 
   }
+
+  getScrollYRecorder(){
+
+    let recorder = ()=>{
+      let obj = {};
+      obj.data = {};
+
+      obj.setScrollNum = (count)=>{
+        obj.data[count] = window.scrollY;
+        return obj[count];
+      };
+
+      obj.getScrollNum = (count)=>{
+
+        console.log('obj scroll data ',count,obj.data);
+
+        return obj.data[count] !== undefined ? obj.data[count] :  obj.setScrollNum(count);
+      };
+
+      return obj;
+
+    };
+
+    return recorder();
+
+  }
+
+
+
+
+
+
+
+
+
+
+
 
   addRegisteredActions() {
     return [
