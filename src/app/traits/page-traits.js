@@ -2,7 +2,7 @@ import {SpyneTrait} from 'spyne';
 import {HomePageView} from '../components/page-home/home-page-view';
 import {ProfilesPageView} from '../components/page-profiles/profiles-page-view';
 import {AboutPageView} from '../components/page-about/about-page-view';
-import {Page404} from '../components/main/page-404';
+import {Page404} from '../components/page-404/page-404';
 
 export class PageTraits extends SpyneTrait {
 

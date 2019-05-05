@@ -1,5 +1,5 @@
 import {SpyneTrait} from 'spyne';
-import {map, range, curry, filter, propEq, prop, compose, head} from 'ramda';
+import {map, flatten, range, curry, filter, propEq, prop, length, clone, compose, head} from 'ramda';
 
 export class ProfileTraits extends SpyneTrait {
 
@@ -41,13 +41,33 @@ export class ProfileTraits extends SpyneTrait {
     const animalAvatarLinks = n=>`//assetscontainer.com/starter-app/imgs/animals_${pad(n)}.jpg`;
     let arr = ProfileTraits.profileTraits$CreateRandomArr(18);
 
-    return map(animalAvatarLinks, arr);
+    let mainArr = [];
+    let n = 0;
+    while(n<40){
+      mainArr.push(ProfileTraits.profileTraits$CreateRandomArr(18));
+      n++
+    }
+
+    mainArr = compose(map(animalAvatarLinks), flatten)(mainArr);
+    return mainArr;
+    //return map(animalAvatarLinks, arr);
+  }
+
+  static profileTraits$generateRandomUsers(usersArr, n=100){
+    const mapNumToUser = rNum => usersArr[rNum];
+    let randomArr = ProfileTraits.profileTraits$CreateRandomArr(usersArr.length-1);
+    randomArr = randomArr.slice(0, n);
+
+    return randomArr.map(mapNumToUser);
+
   }
 
 
   static profileTraits$mapProfiles(response){
     let animatAvatarLinks = ProfileTraits.profileTraits$CreateAnimalAvatarsArr();
+    let usersArr = ProfileTraits.profileTraits$generateRandomUsers(response.users);
 
+      console.log('response is ',response);
 
     const mapProfiles = (profile)=>{
         profile.photo = profile.picture.large;
@@ -61,7 +81,7 @@ export class ProfileTraits extends SpyneTrait {
         return profile;
       };
 
-        return map(mapProfiles, response.users);
+        return map(mapProfiles, usersArr);
   }
 
   static profileTraits$GetProfileItemData(profileId, data){
@@ -69,6 +89,87 @@ export class ProfileTraits extends SpyneTrait {
     return  compose(head, filterByProfileId)(data);
 
   }
+
+  static profileTraits$GetChannelPayload(profileId, data){
+    // profileId is a string greater than one char
+    let isProfileItemEvent = length(profileId)>=1;
+
+    // some names have special characters
+    profileId = decodeURI(profileId);
+
+    const action  = isProfileItemEvent === false ? "CHANNEL_PROFILES_MENU_EVENT" : "CHANNEL_PROFILES_ITEM_EVENT";
+    let payload = isProfileItemEvent === false ? {} : ProfileTraits.profileTraits$GetProfileItemData(profileId, data);
+    console.log('payload is ',payload);
+    payload = payload!== undefined ? payload : ProfileTraits.profileTraits$GetUser404();
+    payload = clone(payload);
+    return {action, payload};
+  }
+
+
+  static profileTraits$GetUser404(){
+    return  {
+      "gender": "male",
+      "name": {
+        "title": "mr",
+        "first": "Unknown",
+        "last": "FourO'Four"
+      },
+      "location": {
+        "street": "5945 rua dom desconocido ii ",
+        "city": "Timbuku",
+        "state": "Atlantis",
+        "postcode": 999999,
+        "coordinates": {
+          "latitude": "-72.0420",
+          "longitude": "-178.2742"
+        },
+        "timezone": {
+          "offset": "+3:00",
+          "description": "Baghdad, Riyadh, Moscow, St. Petersburg"
+        }
+      },
+      "email": "notavailable@example.com",
+      "login": {
+        "uuid": "7a894d97-0838-4dc9-b27e-ff0b0ea3aa42",
+        "username": "bigfoot404",
+        "password": "unavailable",
+        "salt": "aHoH2UK7",
+        "md5": "a56500a567145eba89147b657e54b3b3",
+        "sha1": "82d7b3b4a65b1f15dbcf690a76cc69ff87ce7e9a",
+        "sha256": "208b200843c4f1fdeab734234dfc396959e1ce89b339f2bf0291ddcec06006b3"
+      },
+      "dob": {
+        "date": "1995-04-07T21:01:22Z",
+        "age": 24
+      },
+      "registered": {
+        "date": "2002-11-08T15:34:57Z",
+        "age": 16
+      },
+      "phone": "(08) 6266-2185",
+      "cell": "(78) 2531-5293",
+      "id": {
+        "name": "",
+        "value": null
+      },
+      "picture": {
+        "large": "https://assetscontainer.com/starter-app/user-404.jpg",
+        "medium": "https://assetscontainer.com/starter-app/user-404.jpg",
+        "thumbnail": "https://assetscontainer.com/starter-app/user-404.jpg"
+      },
+      "nat": "BR",
+      "photo": "https://assetscontainer.com/starter-app/user-404.jpg",
+      "fullName": "unknown fouro'four",
+      "userName": "user404",
+      "profileId": "unknown",
+      "country": "Unknown",
+      "loc": "Vihanti, South Karelia",
+      "avatar": "//assetscontainer.com/starter-app/imgs/animals_0002.jpg"
+    }
+
+
+  }
+
 
   static profileTraits$GetCountryByCode(str){
 

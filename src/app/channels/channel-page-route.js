@@ -12,17 +12,17 @@ export class ChannelPageRoute extends Channel {
     super(name, props);
   }
 
-  onRouteChange(e){
-    let {routeData,} = e.props();
-    const action = "CHANNEL_PAGE_ROUTE_EVENT";
-    this.sendChannelPayload(action ,routeData);
-  }
-
   onChannelInitialized() {
     const pagePayloadFilter = this.filters$PageChangeFilter();
     this.getChannel('CHANNEL_ROUTE')
     .pipe(filter(pagePayloadFilter))
-    .subscribe(this.onRouteChange.bind(this));
+    .subscribe(this.onPageRouteChanged.bind(this));
+  }
+
+  onPageRouteChanged(e){
+    let {routeData} = e.props();
+    const action = "CHANNEL_PAGE_ROUTE_EVENT";
+    this.sendChannelPayload(action ,routeData);
   }
 
   addRegisteredActions() {

@@ -24,8 +24,6 @@
   .page {
     position: relative;
     top:5vh;
-    //background: orange;
-
     .page-content {
       position: relative;
       display: flex;
@@ -36,13 +34,15 @@
       z-index: 1;
 
       &.home-page, &.about-page {
-
         justify-content: center;
         align-content: center;
-
       }
-
-
+    }
+    &.page-404{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 94vh;
     }
   }
 }
