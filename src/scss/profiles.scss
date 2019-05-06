@@ -2,12 +2,16 @@
 
 
   #profile-back-btn{
-    position: absolute;
+    position: fixed;
     width: 5vw;
-    top: 2.2rem;
+    height:4vh;
     max-width: 40px;
+    min-width:30px;
+    top: 80px;
     left: 10px;
-
+    display:flex;
+    flex-direction: column;;
+    justify-content: flex-end;
     opacity: 0;
     pointer-events: none;
     &.reveal {
@@ -19,11 +23,8 @@
         opacity:.3;
       }
     }
-
-
-
-
   }
+
 
   div.avatar {
     position: relative;
@@ -68,10 +69,11 @@
   article.profiles-content-holder{
     position:relative;
     .profile-item-holder{
-      position:absolute;
+      position:fixed;
       display:flex;
       flex-direction: column;
       align-items: center;
+      left:0;
       width: 100%;
     }
   }
@@ -113,6 +115,13 @@
       animation-name: bounceLeft;
       animation-duration: .75s;
       animation-fill-mode: forwards;
+
+      pointer-events: none;
+
+      li{
+        pointer-events: none;
+      }
+
 
     }
 

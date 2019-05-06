@@ -27,7 +27,7 @@ const spyneApp = new SpyneApp({
   }
 });
 
-window.history.scrollRestoration='manual';
+//window.history.scrollRestoration='manual';
 
 const app = new MainView();
 app.appendToDom(document.body);
