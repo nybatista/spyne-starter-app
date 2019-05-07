@@ -9,7 +9,7 @@ module.exports = (env) => {
     const devMode =  env !== 'build';
     const mode = isProd ? 'production' : 'development';
     const map = isProd ? 'none' : 'inline-source-map';
-    const publicPath = isProd ? '' : '/';
+    const publicPath = isProd ? '/' : '/';
     return {devMode, mode, map, publicPath};
 
   };
@@ -45,6 +45,8 @@ module.exports = (env) => {
   });
   const htmlPlugin = new HtmlWebpackPlugin({
     title: 'spyne-starter-app',
+    template: './src/index.tmpl.html'
+
   });
 
   return {
