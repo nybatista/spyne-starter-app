@@ -5,7 +5,7 @@ https://example.spynejs.org
 
 This repository can be downloaded or forked to be used as the foundation of a new Spyne application.
 
-#### Install ####
+#### Install spyne ####
 ```
 npm install
 ```
