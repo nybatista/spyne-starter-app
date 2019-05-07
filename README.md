@@ -1,8 +1,7 @@
 ## Spyne Example App ##
-This mashup reveals the basic functionality of a Spyne application, including the routing system. <br/>Webpack is used as the server and build methods.
+This mashup reveals the basic structure of a Spyne application, including the routing system. <br/>Webpack is used as the server and build methods.</br>
 
-
-#### Download or fork this repository. ####
+This repository can be downloaded and forked to be used as the foundation of a new Spyne application.
 
 #### Install ####
 ```
