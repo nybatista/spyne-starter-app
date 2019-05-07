@@ -1,9 +1,10 @@
-## Spyne Starter App ##
+## Spyne Example App ##
 This is a mashup that shows the basic Spyne app structure, including the routing system.
+
+Download or fork this repository.
 
 #### Install ####
 ```
-fork or clone the repo
 npm install
 ```
 
