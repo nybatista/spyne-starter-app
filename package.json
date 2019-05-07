@@ -11,9 +11,7 @@
   "author": "Frank Batista",
   "license": "MIT",
   "dependencies": {
-    "ramda": "^0.26.1",
-    "rxjs": "^6.5.1",
-    "spyne": "^0.10.6"
+    "spyne": "^0.10.8"
   },
   "devDependencies": {
     "chai": "^4.2.0",
