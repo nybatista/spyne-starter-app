@@ -63,6 +63,17 @@ export class ProfileTraits extends SpyneTrait {
   }
 
 
+  static profileTraits$SelectUsers(response){
+
+    const mapNumToUser = rNum => usersArr[rNum];
+    let randomArr = ProfileTraits.profileTraits$CreateRandomArr(usersArr.length-1);
+    randomArr = randomArr.slice(0, n);
+
+  }
+
+
+
+
   static profileTraits$mapProfiles(response){
     let animatAvatarLinks = ProfileTraits.profileTraits$CreateAnimalAvatarsArr();
     let usersArr = ProfileTraits.profileTraits$generateRandomUsers(response.users);
@@ -80,7 +91,12 @@ export class ProfileTraits extends SpyneTrait {
         return profile;
       };
 
-        return usersArr.map(mapProfiles);
+     // let mappedProfiles = usersArr.map(mapProfiles);
+     //   console.log('mappped profiels ',mappedProfiles);
+     // return mappedProfiles;
+     return usersArr;
+
+      //  return usersArr.map(mapProfiles);
   }
 
   static profileTraits$GetProfileItemData(profileId, data){

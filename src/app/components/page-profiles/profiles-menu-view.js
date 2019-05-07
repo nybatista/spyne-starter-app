@@ -1,6 +1,5 @@
 import {ViewStream} from 'spyne';
 import {ProfilesMenuItemView} from './profiles-menu-item-view';
-import {filter} from 'rxjs/operators';
 
 export class ProfilesMenuView extends ViewStream {
 

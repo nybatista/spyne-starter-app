@@ -1,5 +1,4 @@
 import {Channel, ChannelPayloadFilter} from 'spyne';
-import {filter} from "rxjs/operators";
 import {FilterTraits} from '../traits/filter-traits';
 
 
@@ -14,8 +13,7 @@ export class ChannelPageRoute extends Channel {
 
   onChannelInitialized() {
     const pagePayloadFilter = this.filters$PageChangeFilter();
-    this.getChannel('CHANNEL_ROUTE')
-    .pipe(filter(pagePayloadFilter))
+    this.getChannel('CHANNEL_ROUTE', pagePayloadFilter)
     .subscribe(this.onPageRouteChanged.bind(this));
   }
 

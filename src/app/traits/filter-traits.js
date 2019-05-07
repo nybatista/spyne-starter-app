@@ -1,5 +1,4 @@
 import {SpyneTrait, ChannelPayloadFilter} from 'spyne';
-import {propEq, isEmpty, prop, complement, compose, allPass} from 'ramda';
 export class FilterTraits extends SpyneTrait {
 
   constructor(context) {
@@ -21,10 +20,8 @@ export class FilterTraits extends SpyneTrait {
   }
 
   static filters$ProfileEventFilter(e){
-    const pageIdIsProfiles = propEq('pageId', 'profiles');
-
     return new ChannelPayloadFilter('', {
-      routeData: pageIdIsProfiles,
+      routeData: (obj)=>obj.pageId==='profiles',
     })
   }
 

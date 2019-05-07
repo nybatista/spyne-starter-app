@@ -1,4 +1,3 @@
-import {filter} from 'rxjs/operators';
 import {Channel} from 'spyne';
 import {ProfileTraits} from '../traits/profile-trait';
 import {FilterTraits} from '../traits/filter-traits';
@@ -17,10 +16,7 @@ export class ChannelProfiles extends Channel {
     this.props.scrollY=0;
     this.props.scrollRecorder = this.getScrollYRecorder();
 
-
-    const routePayloadFilter = this.filters$ProfileEventFilter();
     this.routeChannel$
-    .pipe(filter(routePayloadFilter))
     .subscribe(this.onProfilesRouteEvent.bind(this));
   }
 
@@ -38,7 +34,9 @@ export class ChannelProfiles extends Channel {
 
 
   onChannelInitialized() {
-    this.routeChannel$ = this.getChannel("CHANNEL_ROUTE");
+
+    const routeProfilePageFilter = this.filters$ProfileEventFilter();
+    this.routeChannel$ = this.getChannel("CHANNEL_ROUTE", routeProfilePageFilter);
 
     this.getChannel('CHANNEL_USERS')
       .subscribe(this.onInitialDataLoaded.bind(this));
@@ -65,8 +63,10 @@ export class ChannelProfiles extends Channel {
 
 
   listenToWindow(p){
-    this.getChannel('CHANNEL_WINDOW')
-    .pipe(filter(p=>p.action==='CHANNEL_WINDOW_SCROLL_EVENT'))
+
+    let scrollFilter = new ChannelPayloadFilter('', {action: "CHANNEL_WINDOW_SCROLL_EVENT" });
+
+    this.getChannel('CHANNEL_WINDOW', scrollFilter)
     .subscribe(this.onWindowScroll.bind(this));
   }
 
