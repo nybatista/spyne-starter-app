@@ -1,4 +1,5 @@
 import {ViewStream} from 'spyne';
+import template from './templates/profile-item.tmpl.html';
 
 export class ProfileItemView extends ViewStream {
 
@@ -6,7 +7,7 @@ export class ProfileItemView extends ViewStream {
     props.id='profile-item-view';
     props.class=`profile-item ${props.data.profileId}`;
     props.animInClass = 'reveal';
-    props.template=require('./templates/profile-item.tmpl.html');
+    props.template=template;
     super(props);
   }
 

@@ -1,5 +1,7 @@
 import {ViewStream} from 'spyne';
 import {FilterTraits} from '../../traits/filter-traits';
+import template from "./templates/header.tmpl.html";
+
 
 export class HeaderView extends ViewStream {
 
@@ -7,7 +9,7 @@ export class HeaderView extends ViewStream {
       props.tagName='section';
       props.id='header-view';
       props.traits = FilterTraits;
-      props.template = require("./templates/header.tmpl.html");
+      props.template = template;
     super(props);
   }
 

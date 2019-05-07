@@ -1,4 +1,5 @@
 import {ViewStream} from 'spyne';
+import template from './templates/profiles-menu-item.tmpl.html';
 
 export class ProfilesMenuItemView extends ViewStream {
   constructor(props = {}) {
@@ -8,7 +9,7 @@ export class ProfilesMenuItemView extends ViewStream {
       channel: "ROUTE",
       profileId: props.data.profileId
     };
-    props.template = require('./templates/profiles-menu-item.tmpl.html');
+    props.template = template;
     super(props);
 
   }

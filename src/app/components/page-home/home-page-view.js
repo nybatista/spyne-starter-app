@@ -1,5 +1,6 @@
 import {ViewStream} from 'spyne';
 import {PageTraits} from '../../traits/page-traits';
+import template from './templates/home.tmpl.html';
 
 export class HomePageView extends ViewStream {
 
@@ -8,7 +9,7 @@ export class HomePageView extends ViewStream {
     props.id='page-home-page';
     props.class='page';
     props.traits = PageTraits;
-    props.template = require('./templates/home.tmpl.html');
+    props.template = template;
     super(props);
     this.props.pageId='home';
   }

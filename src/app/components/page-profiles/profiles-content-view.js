@@ -1,6 +1,7 @@
 import {ViewStream} from 'spyne';
 import {ProfilesMenuView} from './profiles-menu-view';
 import {ProfileItemView} from './profile-item-view';
+import template from './templates/profiles.tmpl.html'
 
 export class ProfilesContentView extends ViewStream {
 
@@ -8,7 +9,7 @@ export class ProfilesContentView extends ViewStream {
     props.tagName='section';
     props.id='profiles-content';
     props.class='profiles-page page-content';
-    props.template = require('./templates/profiles.tmpl.html');
+    props.template = template;
     super(props);
 
   }
