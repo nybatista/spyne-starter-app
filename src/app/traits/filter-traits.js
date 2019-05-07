@@ -6,20 +6,20 @@ export class FilterTraits extends SpyneTrait {
     super(context, traitPrefix);
   }
 
-  static filters$PageIdFilter(e){
+  static filters$PageIdFilter(){
    return new ChannelPayloadFilter('', {
       routeData:  (val)=>['home','profiles','about'].indexOf(val.pageId)>=0
     })
   }
 
 
-  static filters$PageChangeFilter(e){
+  static filters$PageChangeFilter(){
     return new ChannelPayloadFilter('', {
       pathsChanged: (arr)=>arr.indexOf('pageId')>=0
     })
   }
 
-  static filters$ProfileEventFilter(e){
+  static filters$ProfileEventFilter(){
     return new ChannelPayloadFilter('', {
       routeData: (obj)=>obj.pageId==='profiles',
     })

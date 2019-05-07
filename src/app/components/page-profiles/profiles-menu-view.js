@@ -33,7 +33,6 @@ export class ProfilesMenuView extends ViewStream {
 
   broadcastEvents() {
     return [
-      ['ul', 'animationend']
     ];
   }
 
