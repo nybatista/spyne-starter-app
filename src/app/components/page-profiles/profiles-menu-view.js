@@ -17,16 +17,8 @@ export class ProfilesMenuView extends ViewStream {
     ];
   }
 
-  scrollWindowY(n){
-    if (n!==undefined) {
-      window.scrollTo({top: n});
-    }
-  }
-
   slideIn(e){
     this.props.el$.removeClass('hide');
-    let {scrollY} = e.props();
-    this.scrollWindowY(scrollY);
   }
 
   slideOut(e){
@@ -44,7 +36,6 @@ export class ProfilesMenuView extends ViewStream {
       ['ul', 'animationend']
     ];
   }
-
 
 
   onMenuDataEvent(e){

@@ -13,8 +13,6 @@ export class ChannelProfiles extends Channel {
 
   onInitialDataLoaded(e){
     this.props.data = e.payload;
-    this.props.scrollY=0;
-    this.props.scrollRecorder = this.getScrollYRecorder();
 
     this.routeChannel$
     .subscribe(this.onProfilesRouteEvent.bind(this));
@@ -24,11 +22,7 @@ export class ChannelProfiles extends Channel {
     let {profileId} = e.props().routeData;
     let {routeCount} = e.props();
     let {action, payload} = this.profileTraits$GetChannelPayload(profileId, this.props.data);
-
-    // CHECK IF SCROLL POSITION IS FROM HISTORY - BACK - FORWARD BROWSER BUTTONS
-    payload.scrollY = this.props.scrollRecorder.getScrollNum(routeCount);
     this.sendChannelPayload(action, payload);
-
 
   }
 
@@ -43,40 +37,6 @@ export class ChannelProfiles extends Channel {
 
   }
 
-  getScrollYRecorder(){
-    let recorder = ()=>{
-      let obj = {};
-      obj.data = {};
-      obj.setScrollNum = (count)=>{
-        obj.data[count] = this.onWindowScroll();
-        return obj[count];
-      };
-
-      obj.getScrollNum = (count)=>{
-        return obj.data[count] !== undefined ? obj.data[count] :  obj.setScrollNum(count);
-      };
-      return obj;
-    };
-    return recorder();
-
-  }
-
-
-  listenToWindow(p){
-
-    let scrollFilter = new ChannelPayloadFilter('', {action: "CHANNEL_WINDOW_SCROLL_EVENT" });
-
-    this.getChannel('CHANNEL_WINDOW', scrollFilter)
-    .subscribe(this.onWindowScroll.bind(this));
-  }
-
-  onWindowScroll(e){
-    let scrollY = window.scrollY;
-    if (scrollY!==0) {
-      this.props.scrollY = scrollY;
-    }
-    return this.props.scrollY;
-  }
 
 
   addRegisteredActions() {

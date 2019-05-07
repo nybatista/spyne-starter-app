@@ -11,7 +11,6 @@ module.exports = (env) => {
     const map = isProd ? 'none' : 'inline-source-map';
     const publicPath = isProd ? '/' : '/';
     return {devMode, mode, map, publicPath};
-
   };
 
   const envVals = getEnvVals(env);
@@ -20,22 +19,11 @@ module.exports = (env) => {
     dist: path.resolve(__dirname, 'dist'),
     src: path.resolve(__dirname, 'src'),
     js: 'dist/assets/js',
-
-
   };
 
-
-  const MiniCssExtractPlugin = require('mini-css-extract-plugin');
   const HtmlWebpackPlugin = require('html-webpack-plugin');
   const CleanWebpackPlugin = require('clean-webpack-plugin');
-  const miniCssPlugin = new MiniCssExtractPlugin({
-    filename: 'assets/css/main.css',
-  });
 
-  const extractSass = new ExtractTextPlugin({
-    filename: 'assets/css/main.css',
-    disable: envVals.devMode
-  });
 
 
   const cleanPlugin = new CleanWebpackPlugin({
@@ -51,27 +39,21 @@ module.exports = (env) => {
 
   return {
     mode: envVals.mode,
-
     entry: {
       index: './src/index.js',
     },
-
     devtool: envVals.map,
-
     devServer: {
       contentBase: PATHS.src,
       historyApiFallback: true,
     },
-
-    plugins: [miniCssPlugin, cleanPlugin, htmlPlugin],
-
+    plugins: [cleanPlugin, htmlPlugin],
    output: {
      filename: 'assets/js/[name].js',
       path: PATHS.dist,
       publicPath: envVals.publicPath,
 
     },
-
 
     optimization: {
       splitChunks:{
@@ -90,35 +72,9 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          test: /\.css$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                // you can specify a publicPath here
-                // by default it use publicPath in webpackOptions.output
-                publicPath: '../'
-              }
-            },
-            "css-loader"
-          ]
-        },
-
-        {
           test: /\html$/,
           loader: 'html-loader'
         },
-
-
-        {
-          test: /\.(sa|sc|c)ss$/,
-          use: [
-            envVals.devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-            'css-loader',
-            'sass-loader',
-          ],
-        },
-
 
         {
           test: /\.(png|svg|jpg|gif)$/,
@@ -141,11 +97,9 @@ module.exports = (env) => {
     resolve: {
       alias: {
         imgs: path.resolve(__dirname, 'src/static/imgs/'),
-        data: path.resolve(__dirname, 'src/static/data/'),
-        css: path.resolve(__dirname, 'src/css/'),
-
+        data: path.resolve(__dirname, 'src/static/data/')
       },
-      extensions: ['.js', '.css'],
+      extensions: ['.js'],
     },
 
   };

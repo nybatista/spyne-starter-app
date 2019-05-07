@@ -1,4 +1,3 @@
-//import {css} from "./scss/main.scss";
 import {SpyneApp, ChannelFetch} from 'spyne';
 import {MainView} from './app/components/main/main-view';
 import {ChannelProfiles} from './app/channels/channel-profiles';
