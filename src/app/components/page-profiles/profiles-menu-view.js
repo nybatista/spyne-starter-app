@@ -37,7 +37,6 @@ export class ProfilesMenuView extends ViewStream {
     ];
   }
 
-
   onMenuDataEvent(e){
     const addMenuItems = (data)=>{
       this.appendView(new ProfilesMenuItemView({data}))
