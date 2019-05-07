@@ -14,6 +14,7 @@
     justify-content: flex-end;
     opacity: 0;
     pointer-events: none;
+    z-index: $z-index-ui;
     &.reveal {
       cursor: pointer;
       transition: opacity .5s ease;
@@ -192,4 +193,43 @@
 
 
   }
+
+
+  @media(max-width: 1920px) and (orientation: landscape) {
+
+    .profile-item-holder{
+      width: 100%;
+
+
+
+      .profile-item{
+        flex-direction: row;
+        left: 0;
+        width: 80%;
+        //align-items: flex-start;
+        margin-top:-20px;
+
+        align-items: center;
+        justify-content: center;
+
+        .images{
+         // top: 20px;
+          //width:200px;
+        }
+
+        .info{
+            margin:1rem 0;
+          header{
+            margin:  .5rem  1rem 0 2rem;
+          }
+
+        }
+
+      }
+    }
+
+  }
+
+
+
 }
