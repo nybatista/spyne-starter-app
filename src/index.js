@@ -29,7 +29,6 @@ const config = {
 };
 
 const spyneApp = new SpyneApp(config);
-
 const app = new MainView();
 app.appendToDom(document.body);
 
@@ -37,7 +36,7 @@ let channelFetchProps = {
   url: "//assetscontainer.com/starter-app/random-users-main.json",
   mapFn: ProfileTraits.profileTraits$mapProfiles
 };
-spyneApp.registerChannel(new ChannelFetch("CHANNEL_USERS", channelFetchProps));
 
+spyneApp.registerChannel(new ChannelFetch("CHANNEL_USERS", channelFetchProps));
 spyneApp.registerChannel(new ChannelProfiles());
 spyneApp.registerChannel(new ChannelPageRoute());
