@@ -19,6 +19,7 @@ export class HeaderView extends ViewStream {
 
   onRouteChange(e){
     let {pageId} = e.props().routeData;
+    console.log("PAGE ID ",pageId,`#${pageId}` )
     this.props.el$('a').setActiveItem('selected', `#${pageId}`);
   }
 

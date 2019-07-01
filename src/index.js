@@ -1,3 +1,5 @@
+import "spynejs-polyfill/ie";
+
 import {SpyneApp, ChannelFetch} from 'spyne';
 
 import {MainView} from './app/components/main-view';
@@ -5,6 +7,8 @@ import {ProfileTraits} from './app/traits/profile-trait';
 
 import {ChannelProfiles} from './app/channels/channel-profiles';
 import {ChannelPageRoute} from './app/channels/channel-page-route';
+
+const css = require("./scss/main.scss");
 
 const config = {
   debug:true,

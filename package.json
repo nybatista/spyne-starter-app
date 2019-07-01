@@ -11,9 +11,14 @@
   "author": "Frank Batista",
   "license": "MIT",
   "dependencies": {
+    "D": "^1.0.0",
+    "ip": "^1.1.5",
     "spyne": "^0.10.20"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.0.0",
@@ -40,6 +45,7 @@
     "requirejs": "^2.3.6",
     "sass": "^1.22.1",
     "sass-loader": "^7.1.0",
+    "spynejs-polyfill": "0.0.3",
     "url-loader": "^2.0.1",
     "webpack": "^4.35.0",
     "webpack-cli": "^3.3.5",

@@ -3,6 +3,8 @@ module.exports = (env) => {
   const webpack = require('webpack');
   const ExtractTextPlugin = require('extract-text-webpack-plugin');
   const devMode =  env !== 'build';
+  const ip = require('ip');
+  const ipAddresss =  ip.address();
 
   const getEnvVals = (e) => {
     const isProd = e === 'build';
@@ -59,6 +61,8 @@ module.exports = (env) => {
     devServer: {
       contentBase: PATHS.src,
       historyApiFallback: true,
+      host: ipAddresss,
+      port: 8090
     },
 
     plugins: [miniCssPlugin, cleanPlugin, htmlPlugin],
@@ -87,6 +91,25 @@ module.exports = (env) => {
 
     module: {
       rules: [
+
+        { test: /\.js$/,
+          loader: "babel-loader",
+          options: {
+            "babelrc" : false,
+            "presets": [
+              ["@babel/preset-env", {
+                "targets": {
+                  "ie" : 10,
+                  "browsers": ["last 2 versions"],
+
+                },
+                "modules": 'auto',
+                "loose": true
+              }]
+            ]
+          }
+        },
+
         {
           test: /\.css$/,
           use: [

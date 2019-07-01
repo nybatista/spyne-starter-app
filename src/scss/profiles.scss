@@ -83,12 +83,15 @@
 
     //display: flex;
     top: 10px;
-    width: 100vw;
-    //flex-wrap: wrap;
+    //width: 100vw;
+    flex-wrap: wrap;
+
     list-style-type: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minMax(100px, 370px));
-    grid-row-gap: 30px;
+    //display: grid;
+  //  grid-template-columns: repeat(auto-fit, minMax(100px, 370px));
+   // grid-row-gap: 30px;
+
+    display:flex;
     box-sizing: border-box;
     justify-content: center;
     margin: 10px 0 100px 0;
@@ -129,7 +132,7 @@
     li {
       position: relative;
       width: 340px;
-
+      margin:4px;
       height: 385px;
       background: $beigeLight;
       // margin: 10px;
