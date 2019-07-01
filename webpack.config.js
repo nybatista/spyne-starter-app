@@ -27,7 +27,7 @@ module.exports = (env) => {
 
   const MiniCssExtractPlugin = require('mini-css-extract-plugin');
   const HtmlWebpackPlugin = require('html-webpack-plugin');
-  const CleanWebpackPlugin = require('clean-webpack-plugin');
+  const {CleanWebpackPlugin} = require('clean-webpack-plugin');
   const miniCssPlugin = new MiniCssExtractPlugin({
     filename: 'assets/css/main.css',
   });
@@ -44,7 +44,7 @@ module.exports = (env) => {
 
   });
   const htmlPlugin = new HtmlWebpackPlugin({
-    title: 'spyne-starter-app',
+    template: './src/index.tmpl.html'
   });
 
   return {

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>spyne example app</title>
+    <meta name="description" content="basic spyne appllication">
+    <link rel="stylesheet"  href="//assetscontainer.com/starter-app/css/main.css"/>
+</head>
+<body>
+
+
+
+<script class="tmpl-about" type="template">
+    <section class="about-page page-content">
+        <div class="about-content">
+            <h1>About this Site</h1>
+            <p>
+                This mashup was created to show the basic structures of a Spyne application
+            </p>
+            <p>
+                All animal images are from <a target="blank" href="//www.pexels.com">https://www.pexels.com/</a>
+            </p>
+            <p>
+                User data is from <a target="_blank" href="//randomuser.me">https://randomuser.me/</a>
+            </p>
+        </div>
+    </section>
+</script>
+<script class="tmpl-home" type="template">
+    <section class="home-page page-content">
+        <h1>Spyne Starter App</h1>
+        <div class="btn" data-channel="ROUTE" data-page-id="profiles">click here</div>
+    </section>
+</script>
+
+
+<script class="tmpl-404" type="template">
+    <div class="page-content">
+        <h1 class="c404">404</h1>
+    </div>
+</script>
+
+
+<script class="tmpl-header" type="template">
+    <div class="header-content">
+        <a id="home" href="/" data-page-id="home" data-page-id-value="" data-event-prevent-default="true" data-channel="ROUTE">HOME</a>
+        <a id="profiles" href="/profiles" data-page-id="profiles" data-event-prevent-default="true" data-channel="ROUTE">PROFILES</a>
+        <a  id="about" href="/about" data-page-id="about" data-event-prevent-default="true" data-channel="ROUTE">ABOUT</a>
+    </div>
+</script>
+
+
+</body>
+</html>

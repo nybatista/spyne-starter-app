@@ -1,8 +1,5 @@
 import {SpyneTrait} from 'spyne';
-import {HomePageView} from '../components/page-home/home-page-view';
-import {ProfilesPageView} from '../components/page-profiles/profiles-page-view';
-import {AboutPageView} from '../components/page-about/about-page-view';
-import {Page404} from '../components/page-404/page-404';
+import {ProfilesContentView} from '../components/profiles-views/profiles-content-view';
 
 export class PageTraits extends SpyneTrait {
 
@@ -11,15 +8,12 @@ export class PageTraits extends SpyneTrait {
     super(context, traitPrefix);
   }
 
-  static pageTrait$GetPageClass(pageId='home'){
-    const classHashObj = {
-      'home' : HomePageView,
-      'profiles' : ProfilesPageView,
-      'about' :  AboutPageView,
-      '404' : Page404
-    };
-    return classHashObj[pageId];
+
+  static pageTrait$BraodcastEventsArr(){
+    let {pageId} = this.props;
+     return  pageId === 'home' ? [['.btn', 'click']] : [];
   }
+
 
   static pageTrait$OnPageChangeBindToDispose(){
     return  ['CHANNEL_PAGE_ROUTE_EVENT', 'disposeViewStream'];
@@ -27,6 +21,10 @@ export class PageTraits extends SpyneTrait {
 
   static pageTrait$InitPage(){
     this.addChannel("CHANNEL_PAGE_ROUTE");
+
+    if (this.props.pageId==='profiles'){
+      this.appendView(new ProfilesContentView());
+    }
 
   }
 

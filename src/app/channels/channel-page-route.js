@@ -11,7 +11,7 @@ export class ChannelPageRoute extends Channel {
     super(name, props);
   }
 
-  onChannelInitialized() {
+  onRegistered() {
     const pagePayloadFilter = this.filters$PageChangeFilter();
     this.getChannel('CHANNEL_ROUTE', pagePayloadFilter)
     .subscribe(this.onPageRouteChanged.bind(this));
